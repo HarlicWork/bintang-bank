@@ -13,7 +13,7 @@ export function StartupPage(props: StartupPageProps) {
 
   return (
     <>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle={'default'} />
       <SafeAreaView style={styles.container}>
         <View style={styles.contentContainer}>
           <Image
