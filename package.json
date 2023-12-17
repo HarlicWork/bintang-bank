@@ -2,12 +2,16 @@
   "name": "@bintang-bank/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "ios:mobile": "nx run-ios mobile-app",
+    "android:mobile": "nx run-android mobile-app"
+  },
   "private": true,
   "dependencies": {
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.72.6",
+    "react-native-fast-image": "^8.6.3",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
