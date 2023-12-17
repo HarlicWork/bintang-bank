@@ -1,4 +1,5 @@
 import React from 'react';
+import '@bintang-bank/shared/styles/unistyles';
 
 import { AppRoutes } from '../routers/app-routes';
 import { StartupPage } from '@bintang-bank/pages';

@@ -1,7 +1,6 @@
-import React from 'react';
-
-import { View, StatusBar, StyleSheet } from 'react-native';
+import { StatusBar, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 import assets from '@bintang-bank/assets';
 import { Image, LoadingIndicator } from '@bintang-bank/shared';
@@ -10,6 +9,8 @@ import { Image, LoadingIndicator } from '@bintang-bank/shared';
 export interface StartupPageProps {}
 
 export function StartupPage(props: StartupPageProps) {
+  const { styles, theme } = useStyles(stylesheet);
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -20,17 +21,17 @@ export function StartupPage(props: StartupPageProps) {
             customStyles={styles.imageStyles}
             resizeMode="cover"
           />
-          <LoadingIndicator size="small" color="#818FB4" />
+          <LoadingIndicator size="small" color={theme.colors.typography} />
         </View>
       </SafeAreaView>
     </>
   );
 }
 
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet(({ colors }) => ({
   container: {
     flex: 1,
-    backgroundColor: '#363062',
+    backgroundColor: colors.background,
   },
   contentContainer: {
     flex: 1,
@@ -41,6 +42,6 @@ const styles = StyleSheet.create({
     width: 200,
     height: 150,
   },
-});
+}));
 
 export default StartupPage;

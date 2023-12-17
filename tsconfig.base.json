@@ -20,6 +20,7 @@
       "@bintang-bank/features": ["libs/features/src/index.ts"],
       "@bintang-bank/pages": ["libs/pages/src/index.ts"],
       "@bintang-bank/shared": ["libs/shared/src/index.ts"],
+      "@bintang-bank/shared/*": ["libs/shared/src/*"],
       "@bintang-bank/widgets": ["libs/widgets/src/index.ts"]
     }
   },
