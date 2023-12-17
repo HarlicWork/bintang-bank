@@ -21,7 +21,7 @@ export function StartupPage(props: StartupPageProps) {
             customStyles={styles.imageStyles}
             resizeMode="cover"
           />
-          <Text>{contents('common.welcome')}</Text>
+          <Text testID="heading">{contents('common.welcome')}</Text>
           <LoadingIndicator size="small" color={theme.colors.typography} />
         </View>
       </SafeAreaView>
