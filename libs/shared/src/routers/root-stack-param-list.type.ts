@@ -2,6 +2,7 @@ import { AppRoutes } from './app-routes';
 
 export type RootStackParamList = {
   [AppRoutes.Startup]: undefined;
+  [AppRoutes.SomethingWrong]: undefined;
 };
 
 declare global {

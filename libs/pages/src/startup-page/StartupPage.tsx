@@ -1,14 +1,41 @@
+import { useEffect } from 'react';
 import { View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 import assets from '@bintang-bank/assets';
-import { Image, LoadingIndicator, SafeScreen } from '@bintang-bank/shared';
+import {
+  AppRoutes,
+  Image,
+  LoadingIndicator,
+  RootStackParamList,
+  SafeScreen,
+} from '@bintang-bank/shared';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 /* eslint-disable-next-line */
 export interface StartupPageProps {}
 
 export function StartupPage(props: StartupPageProps) {
   const { styles, theme } = useStyles(stylesheet);
+  const { reset } = useNavigation<NavigationProp<RootStackParamList>>();
+
+  const init = async () => {
+    await new Promise((resolve) =>
+      setTimeout(() => {
+        resolve(true);
+      }, 2000)
+    );
+
+    reset({
+      index: 0,
+      routes: [{ name: AppRoutes.SomethingWrong }],
+    });
+  };
+
+  useEffect(() => {
+    init();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <SafeScreen>

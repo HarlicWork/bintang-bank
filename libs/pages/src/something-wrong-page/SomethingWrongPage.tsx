@@ -1,5 +1,6 @@
 import assets from '@bintang-bank/assets';
 import { Image, SafeScreen } from '@bintang-bank/shared';
+import { View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 /* eslint-disable-next-line */
@@ -10,19 +11,22 @@ export function SomethingWrongPage(props: SomethingWrongPageProps) {
 
   return (
     <SafeScreen>
-      <Image
-        source={assets.error404}
-        customStyles={styles.imageStyles}
-        resizeMode="cover"
-      />
+      <View style={styles.imageContainer}>
+        <Image
+          source={assets.error404}
+          customStyles={styles.imageStyles}
+          resizeMode="cover"
+        />
+      </View>
     </SafeScreen>
   );
 }
 
 const stylesheet = createStyleSheet(({ colors }) => ({
-  container: {
+  imageContainer: {
     flex: 1,
-    backgroundColor: colors.background,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   imageStyles: {
     width: 200,
