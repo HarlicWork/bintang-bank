@@ -1,5 +1,5 @@
 import assets from '@bintang-bank/assets';
-import { Image, SafeScreen } from '@bintang-bank/shared';
+import { Image, SafeScreen, Typo } from '@bintang-bank/shared';
 import { View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
@@ -10,13 +10,14 @@ export function SomethingWrongPage(props: SomethingWrongPageProps) {
   const { styles } = useStyles(stylesheet);
 
   return (
-    <SafeScreen>
+    <SafeScreen customBgColor="white">
       <View style={styles.imageContainer}>
         <Image
           source={assets.error404}
           customStyles={styles.imageStyles}
-          resizeMode="cover"
+          resizeMode="contain"
         />
+        <Typo preset="h3" color="red" screen={['error']} text="error:error" />
       </View>
     </SafeScreen>
   );

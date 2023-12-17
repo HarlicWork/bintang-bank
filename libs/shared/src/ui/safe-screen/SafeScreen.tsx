@@ -10,13 +10,14 @@ import {
 /* eslint-disable-next-line */
 export interface SafeScreenProps {
   children: React.ReactNode;
+  customBgColor?: string;
 }
 
-export function SafeScreen({ children }: SafeScreenProps) {
+export function SafeScreen({ children, customBgColor }: SafeScreenProps) {
   const { styles } = useStyles(stylesheet);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container(customBgColor)}>
       <StatusBar
         barStyle={
           UnistylesRuntime.colorScheme === 'dark'
@@ -30,10 +31,10 @@ export function SafeScreen({ children }: SafeScreenProps) {
 }
 
 const stylesheet = createStyleSheet(({ colors }) => ({
-  container: {
+  container: (customBgColor) => ({
     flex: 1,
-    backgroundColor: colors.background,
-  },
+    backgroundColor: customBgColor ? customBgColor : colors.background,
+  }),
 }));
 
 export default SafeScreen;
