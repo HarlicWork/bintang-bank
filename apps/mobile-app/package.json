@@ -16,6 +16,11 @@
     "react-native-unistyles": "*",
     "react-native-screens": "*",
     "@react-navigation/native": "*",
-    "@react-navigation/native-stack": "*"
+    "@react-navigation/native-stack": "*",
+    "i18n-js": "*",
+    "react-native-mmkv": "*",
+    "redux-persist": "*",
+    "react-native-localize": "*",
+    "@react-native-community/netinfo": "*"
   }
 }

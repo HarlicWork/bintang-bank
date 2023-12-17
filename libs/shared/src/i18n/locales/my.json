@@ -1,0 +1,22 @@
+{
+  "common": {
+    "cancel": "Batal",
+    "create": "Cipta",
+    "delete": "Padam",
+    "errorMessage": "Ralat tidak diketahui..!!!",
+    "hey": "Hey there,",
+    "ohhNo": "Ohh Tidak!!!",
+    "or": "Atau",
+    "ok": "OK",
+    "save": "Simpan",
+    "see_more": "Lihat Lebih Banyak",
+    "skip": "Lewat",
+    "welcome": "Selamat Datang",
+    "yes": "Ya",
+    "hello": "Hello {{name}}!",
+    "internetConnectionError": "Sila periksa sambungan internet anda."
+  },
+  "startup": {
+    "test": "percubaan"
+  }
+}

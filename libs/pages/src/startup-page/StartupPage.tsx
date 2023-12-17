@@ -1,9 +1,9 @@
-import { StatusBar, View } from 'react-native';
+import { StatusBar, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 import assets from '@bintang-bank/assets';
-import { Image, LoadingIndicator } from '@bintang-bank/shared';
+import { Image, LoadingIndicator, contents } from '@bintang-bank/shared';
 
 /* eslint-disable-next-line */
 export interface StartupPageProps {}
@@ -21,6 +21,7 @@ export function StartupPage(props: StartupPageProps) {
             customStyles={styles.imageStyles}
             resizeMode="cover"
           />
+          <Text>{contents('common.welcome')}</Text>
           <LoadingIndicator size="small" color={theme.colors.typography} />
         </View>
       </SafeAreaView>
