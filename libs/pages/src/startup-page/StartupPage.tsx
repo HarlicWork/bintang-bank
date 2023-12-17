@@ -1,9 +1,8 @@
-import { StatusBar, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 import assets from '@bintang-bank/assets';
-import { Image, LoadingIndicator, contents } from '@bintang-bank/shared';
+import { Image, LoadingIndicator, SafeScreen } from '@bintang-bank/shared';
 
 /* eslint-disable-next-line */
 export interface StartupPageProps {}
@@ -12,20 +11,16 @@ export function StartupPage(props: StartupPageProps) {
   const { styles, theme } = useStyles(stylesheet);
 
   return (
-    <>
-      <StatusBar barStyle={'default'} />
-      <SafeAreaView style={styles.container}>
-        <View style={styles.contentContainer}>
-          <Image
-            source={assets.bankLogo}
-            customStyles={styles.imageStyles}
-            resizeMode="cover"
-          />
-          <Text testID="heading">{contents('common.welcome')}</Text>
-          <LoadingIndicator size="small" color={theme.colors.typography} />
-        </View>
-      </SafeAreaView>
-    </>
+    <SafeScreen>
+      <View style={styles.contentContainer}>
+        <Image
+          source={assets.bankLogo}
+          customStyles={styles.imageStyles}
+          resizeMode="cover"
+        />
+        <LoadingIndicator size="small" color={theme.colors.typography} />
+      </View>
+    </SafeScreen>
   );
 }
 

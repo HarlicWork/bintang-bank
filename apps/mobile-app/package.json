@@ -27,6 +27,8 @@
     "react-native-mmkv-flipper-plugin": "*",
     "redux-flipper": "*",
     "react-native-flipper": "*",
-    "@testing-library/jest-dom": "*"
+    "@testing-library/jest-dom": "*",
+    "i18next": "*",
+    "react-i18next": "*"
   }
 }

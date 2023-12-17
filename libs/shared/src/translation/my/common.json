@@ -15,8 +15,5 @@
     "yes": "Ya",
     "hello": "Hello {{name}}!",
     "internetConnectionError": "Sila periksa sambungan internet anda."
-  },
-  "startup": {
-    "test": "percubaan"
   }
 }

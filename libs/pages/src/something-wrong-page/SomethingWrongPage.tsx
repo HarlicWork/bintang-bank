@@ -1,7 +1,5 @@
-import { StatusBar } from 'react-native';
 import assets from '@bintang-bank/assets';
-import { Image } from '@bintang-bank/shared';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Image, SafeScreen } from '@bintang-bank/shared';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 /* eslint-disable-next-line */
@@ -11,16 +9,13 @@ export function SomethingWrongPage(props: SomethingWrongPageProps) {
   const { styles } = useStyles(stylesheet);
 
   return (
-    <>
-      <StatusBar barStyle={'default'} />
-      <SafeAreaView style={styles.container}>
-        <Image
-          source={assets.error404}
-          customStyles={styles.imageStyles}
-          resizeMode="cover"
-        />
-      </SafeAreaView>
-    </>
+    <SafeScreen>
+      <Image
+        source={assets.error404}
+        customStyles={styles.imageStyles}
+        resizeMode="cover"
+      />
+    </SafeScreen>
   );
 }
 

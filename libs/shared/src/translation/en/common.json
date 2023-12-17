@@ -15,8 +15,5 @@
     "yes": "Yes",
     "hello": "Hello {{name}}!",
     "internetConnectionError": "Please check you internet connectivity."
-  },
-  "startup": {
-    "test": "testing"
   }
 }
