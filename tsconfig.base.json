@@ -17,6 +17,7 @@
     "paths": {
       "@bintang-bank/assets": ["libs/assets/src/index.ts"],
       "@bintang-bank/entities": ["libs/entities/src/index.ts"],
+      "@bintang-bank/entities/*": ["libs/entities/src/*"],
       "@bintang-bank/features": ["libs/features/src/index.ts"],
       "@bintang-bank/pages": ["libs/pages/src/index.ts"],
       "@bintang-bank/shared": ["libs/shared/src/index.ts"],

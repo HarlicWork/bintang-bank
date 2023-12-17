@@ -7,3 +7,4 @@ export * from './ui/loading-indicator/LoadingIndicator';
 export * from './context/content';
 export * from './utils/dimensions';
 export * from './utils/helper';
+export * from './store/store';

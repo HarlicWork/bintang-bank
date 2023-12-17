@@ -21,6 +21,11 @@
     "react-native-mmkv": "*",
     "redux-persist": "*",
     "react-native-localize": "*",
-    "@react-native-community/netinfo": "*"
+    "@react-native-community/netinfo": "*",
+    "react-redux": "*",
+    "@reduxjs/toolkit": "*",
+    "react-native-mmkv-flipper-plugin": "*",
+    "redux-flipper": "*",
+    "react-native-flipper": "*"
   }
 }
