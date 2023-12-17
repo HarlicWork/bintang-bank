@@ -11,6 +11,10 @@
     "react-native-svg": "*",
     "metro-config": "*",
     "react-native-svg-transformer": "*",
-    "react-native-fast-image": "*"
+    "react-native-fast-image": "*",
+    "react-native-safe-area-context": "*",
+    "react-native-screens": "*",
+    "@react-navigation/native": "*",
+    "@react-navigation/native-stack": "*"
   }
 }
