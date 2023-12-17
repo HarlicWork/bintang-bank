@@ -7533,6 +7533,11 @@ queue@6.0.2:
   dependencies:
     inherits "~2.0.3"
 
+radix-ui-react-native-icons@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/radix-ui-react-native-icons/-/radix-ui-react-native-icons-1.0.8.tgz#964c9bdd0ef3f2c27704c1a5c57f3545b21f7eb5"
+  integrity sha512-cs+hhw5lOYxLw0KAIUtt+fzf+jPxviIPqe7WtJKr3gf4/faZiWlEAPNZ8vQm4UEidV9enyZyK1zBKRuotMKG6A==
+
 range-parser@~1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.1.tgz#3cf37023d199e1c24d1a55b84800c2f3e6468031"

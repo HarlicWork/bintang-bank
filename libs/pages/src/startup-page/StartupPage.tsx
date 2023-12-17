@@ -28,7 +28,7 @@ export function StartupPage(props: StartupPageProps) {
 
     reset({
       index: 0,
-      routes: [{ name: AppRoutes.SomethingWrong }],
+      routes: [{ name: AppRoutes.Dashboard }],
     });
   };
 

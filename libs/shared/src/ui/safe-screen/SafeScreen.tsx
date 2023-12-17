@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StatusBar } from 'react-native';
+import { SafeAreaView, StatusBar, StyleProp, ViewStyle } from 'react-native';
 
 import {
   UnistylesRuntime,
@@ -11,13 +11,18 @@ import {
 export interface SafeScreenProps {
   children: React.ReactNode;
   customBgColor?: string;
+  style?: StyleProp<ViewStyle>;
 }
 
-export function SafeScreen({ children, customBgColor }: SafeScreenProps) {
+export function SafeScreen({
+  children,
+  customBgColor,
+  style = {},
+}: SafeScreenProps) {
   const { styles } = useStyles(stylesheet);
 
   return (
-    <SafeAreaView style={styles.container(customBgColor)}>
+    <SafeAreaView style={styles.container(customBgColor, style)}>
       <StatusBar
         barStyle={
           UnistylesRuntime.colorScheme === 'dark'
@@ -31,9 +36,10 @@ export function SafeScreen({ children, customBgColor }: SafeScreenProps) {
 }
 
 const stylesheet = createStyleSheet(({ colors }) => ({
-  container: (customBgColor) => ({
+  container: (customBgColor, customStyles) => ({
     flex: 1,
     backgroundColor: customBgColor ? customBgColor : colors.background,
+    ...customStyles,
   }),
 }));
 
