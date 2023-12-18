@@ -27,6 +27,13 @@ This project is using [Feature-Sliced Design Architecture](https://feature-slice
 
 Application reside in apps folder, while each FSD (assets, widgets, entities, pages, features, shared) layers reside in libs folder. Each feature is a self-contained module that can be developed and tested independently (run `nx text {layers_name}`).
 
+See below graph on how that architecture linked together:
+
+![img](./docs/graph.png)
+
+Note: You can also use [Nx Graph](https://nx.dev/nx-api/nx/documents/dep-graph#graph) to visualize the dependency graph of this projects. Run `nx graph`.
+You might need to install Nx globally first using `yarn global add nx@latest` or `npm install --global nx@latest` if you haven't done so.
+
 ## Running tasks
 
 To execute tasks in this project with Nx, use the following syntax:
