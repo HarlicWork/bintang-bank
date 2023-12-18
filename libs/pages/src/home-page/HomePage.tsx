@@ -1,23 +1,32 @@
-import { SafeScreen } from '@bintang-bank/shared';
+import { SafeScreen, Typo } from '@bintang-bank/shared';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
-import { Text } from 'react-native';
+import { View } from 'react-native';
+import { CommonHeaderWidget } from '@bintang-bank/widgets';
 
 /* eslint-disable-next-line */
 export interface HomePageProps {}
 
 export function HomePage(props: HomePageProps) {
-  const { styles } = useStyles(stylesheet);
+  const { styles, theme } = useStyles(stylesheet);
 
   return (
-    <SafeScreen style={styles.container}>
-      <Text>Welcome to HomePage!</Text>
+    <SafeScreen>
+      <CommonHeaderWidget headerTitle="Home" />
+      <View style={styles.container}>
+        <Typo
+          text="Welcome to HomePage!"
+          color={theme.colors.onTypography}
+          preset="h3"
+        />
+      </View>
     </SafeScreen>
   );
 }
 
 const stylesheet = createStyleSheet(({ colors }) => ({
   container: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },

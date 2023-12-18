@@ -1,17 +1,23 @@
-import { SafeScreen } from '@bintang-bank/shared';
+import { SafeScreen, Typo } from '@bintang-bank/shared';
 
-import { Text } from 'react-native';
+import { View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 /* eslint-disable-next-line */
 export interface AccountsPageProps {}
 
 export function AccountsPage(props: AccountsPageProps) {
-  const { styles } = useStyles(stylesheet);
+  const { styles, theme } = useStyles(stylesheet);
 
   return (
     <SafeScreen style={styles.container}>
-      <Text>Welcome to AccountsPage!</Text>
+      <View style={styles.container}>
+        <Typo
+          text="Welcome to Accounts Page!"
+          color={theme.colors.onTypography}
+          preset="h3"
+        />
+      </View>
     </SafeScreen>
   );
 }

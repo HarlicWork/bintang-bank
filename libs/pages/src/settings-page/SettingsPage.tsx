@@ -1,17 +1,23 @@
-import { SafeScreen } from '@bintang-bank/shared';
+import { SafeScreen, Typo } from '@bintang-bank/shared';
 
-import { Text } from 'react-native';
+import { View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 /* eslint-disable-next-line */
 export interface SettingsPageProps {}
 
 export function SettingsPage(props: SettingsPageProps) {
-  const { styles } = useStyles(stylesheet);
+  const { styles, theme } = useStyles(stylesheet);
 
   return (
     <SafeScreen style={styles.container}>
-      <Text>Welcome to SettingsPage!</Text>
+      <View style={styles.container}>
+        <Typo
+          text="Welcome to Settings Page!"
+          color={theme.colors.onTypography}
+          preset="h3"
+        />
+      </View>
     </SafeScreen>
   );
 }
