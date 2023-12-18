@@ -23,9 +23,9 @@ This Nx React Native template project is here to jumpstart enterprise mobile app
 
 ## Architecture
 
-This project is using [Feature-Sliced Design Architecture](https://feature-sliced.design/) to structure the codebase. The project is divided into several features, each feature is a self-contained module that can be developed and tested independently.
+This project is using [Feature-Sliced Design Architecture](https://feature-sliced.design/) to structure the codebase. The project is divided into several layers, each layer is a self-contained module that can be developed and tested independently.
 
-Application reside in apps folder, while each FSD (assets, widgets, entities, pages, features, shared) layers reside in libs folder. Each feature is a self-contained module that can be developed and tested independently (run `nx test {layers_name}`).
+Application reside in apps folder, while each FSD (assets, widgets, entities, pages, features, shared) layer reside in libs folder. Each feature is a self-contained module that can be developed and tested independently (run `nx test {layers_name}`).
 
 See below graph on how that architecture linked together:
 
