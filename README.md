@@ -11,8 +11,8 @@ This Nx React Native template project is here to jumpstart enterprise mobile app
 ## Features
 
 - [x] React Native
-- [x] [Nx RN Monorepo](https://nx.dev/recipes/react/react-native)
 - [x] TypeScript Setup
+- [x] [Nx RN Monorepo](https://nx.dev/recipes/react/react-native)
 - [x] [React Navigation](https://reactnavigation.org/)
 - [x] [React Native MMKV Storage](https://github.com/mrousavy/react-native-mmkv)
 - [x] [Redux Toolkit](https://redux-toolkit.js.org/)
@@ -20,6 +20,12 @@ This Nx React Native template project is here to jumpstart enterprise mobile app
 - [x] I18n using [react-i18next](https://www.npmjs.com/package/react-i18next)
 - [x] [Radix Icons](https://github.com/Eronred/radix-ui-react-native-icons/tree/main?tab=readme-ov-file)
 - [x] [React Native Unistyles 2.0](https://reactnativeunistyles.vercel.app/)
+
+## Architecture
+
+This project is using [Feature-Sliced Design Architecture](https://feature-sliced.design/) to structure the codebase. The project is divided into several features, each feature is a self-contained module that can be developed and tested independently.
+
+Application reside in apps folder, while each FSD (assets, widgets, entities, pages, features, shared) layers reside in libs folder. Each feature is a self-contained module that can be developed and tested independently (run `nx text {layers_name}`).
 
 ## Running tasks
 
