@@ -5,7 +5,7 @@ import { SomethingWrongPage } from '@bintang-bank/pages';
 import { persistor, store } from '@bintang-bank/shared';
 import { Provider as StoreProvider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import AppNavigator from '../navigators/AppNavigator';
+import { AppNavigator } from '@bintang-bank/pages';
 
 export const App = () => {
   return (
