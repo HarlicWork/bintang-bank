@@ -43,7 +43,7 @@ yarn ios:mobile
 yarn android:mobile
 ```
 
-Note: Check the `project.json` in mobile-app folder, watchman clear, ensure-symlink, sync-deps already automated when call above command using `dependOn` option, along with metro resetCache.
+Note: Check the `project.json` in mobile-app folder, watchman clear, ensure-symlink, sync-deps (pod-install for ios!) already automated when call above command using `dependOn` option, along with metro resetCache.
 
 Targets can be defined in the `package.json` or `projects.json`. Learn more [in the docs](https://nx.dev/core-features/run-tasks).
 
