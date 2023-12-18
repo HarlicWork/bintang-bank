@@ -1,3 +1,4 @@
+export * from './ui/icon/Icon';
 export * from './ui/typo/Typo';
 export * from './constants/storageKeys';
 export * from './routers/app-routes';

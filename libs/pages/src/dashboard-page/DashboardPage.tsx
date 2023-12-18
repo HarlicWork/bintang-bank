@@ -1,4 +1,4 @@
-import { SafeScreen } from '@bintang-bank/shared';
+import { Icon, SafeScreen } from '@bintang-bank/shared';
 
 import { Text } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
@@ -11,6 +11,7 @@ export function DashboardPage(props: DashboardPageProps) {
   return (
     <SafeScreen style={styles.container}>
       <Text>Welcome to DashboardPage!</Text>
+      <Icon name="arrow-right" size={24} color="black" />
     </SafeScreen>
   );
 }
