@@ -4,4 +4,3 @@ export { default as error } from './error.json';
 export { default as home } from './home.json';
 export { default as settings } from './settings.json';
 export { default as startup } from './startup.json';
-
