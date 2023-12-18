@@ -4,4 +4,5 @@ export enum AppRoutes {
   SomethingWrong = 'SomethingWrong',
   Home = 'Home',
   Settings = 'Settings',
+  Accounts = 'Accounts',
 }

@@ -4,14 +4,14 @@ import { Text } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 /* eslint-disable-next-line */
-export interface SettingsPageProps {}
+export interface AccountsPageProps {}
 
-export function SettingsPage(props: SettingsPageProps) {
+export function AccountsPage(props: AccountsPageProps) {
   const { styles } = useStyles(stylesheet);
 
   return (
     <SafeScreen style={styles.container}>
-      <Text>Welcome to SettingsPage!</Text>
+      <Text>Welcome to AccountsPage!</Text>
     </SafeScreen>
   );
 }
@@ -23,4 +23,4 @@ const stylesheet = createStyleSheet(({ colors }) => ({
   },
 }));
 
-export default SettingsPage;
+export default AccountsPage;
