@@ -19,7 +19,12 @@
     },
     "run-ios": {
       "executor": "@nx/react-native:run-ios",
-      "dependsOn": ["ensure-symlink", "sync-deps", "pod-install"],
+      "dependsOn": [
+        "watchman-clear",
+        "ensure-symlink",
+        "sync-deps",
+        "pod-install"
+      ],
       "options": {
         "resetCache": true
       }
@@ -36,7 +41,7 @@
     },
     "run-android": {
       "executor": "@nx/react-native:run-android",
-      "dependsOn": ["ensure-symlink", "sync-deps"],
+      "dependsOn": ["watchman-clear", "ensure-symlink", "sync-deps"],
       "options": {}
     },
     "build-android": {
@@ -85,6 +90,13 @@
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/mobile-app/jest.config.ts"
+      }
+    },
+
+    "watchman-clear": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "watchman watch-del-all"
       }
     }
   },
