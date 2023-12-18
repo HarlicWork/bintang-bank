@@ -15,6 +15,7 @@ export function DashboardNavigator(props: DashboardNavigatorProps) {
 
   return (
     <Tab.Navigator
+      backBehavior="history"
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color }) => {
           let iconName: string;
