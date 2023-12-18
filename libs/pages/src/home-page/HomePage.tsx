@@ -15,7 +15,8 @@ export function HomePage(props: HomePageProps) {
       <CommonHeaderWidget headerTitle="Home" />
       <View style={styles.container}>
         <Typo
-          text="Welcome to HomePage!"
+          screen={['home']}
+          text="greetings"
           color={theme.colors.onTypography}
           preset="h3"
         />

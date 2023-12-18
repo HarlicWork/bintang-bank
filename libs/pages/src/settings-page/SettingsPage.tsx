@@ -13,7 +13,8 @@ export function SettingsPage(props: SettingsPageProps) {
     <SafeScreen style={styles.container}>
       <View style={styles.container}>
         <Typo
-          text="Welcome to Settings Page!"
+          screen={['settings']}
+          text="greetings"
           color={theme.colors.onTypography}
           preset="h3"
         />

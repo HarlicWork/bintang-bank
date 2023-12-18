@@ -17,7 +17,7 @@ export function SomethingWrongPage(props: SomethingWrongPageProps) {
           customStyles={styles.imageStyles}
           resizeMode="contain"
         />
-        <Typo preset="h3" color="red" screen={['error']} text="error:error" />
+        <Typo preset="h3" color="red" screen={['error']} text="error" />
       </View>
     </SafeScreen>
   );

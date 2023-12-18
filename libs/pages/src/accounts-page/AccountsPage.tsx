@@ -13,7 +13,8 @@ export function AccountsPage(props: AccountsPageProps) {
     <SafeScreen style={styles.container}>
       <View style={styles.container}>
         <Typo
-          text="Welcome to Accounts Page!"
+          screen={['accounts']}
+          text="greetings"
           color={theme.colors.onTypography}
           preset="h3"
         />

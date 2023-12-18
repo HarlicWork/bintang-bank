@@ -115,7 +115,7 @@ export function Typo({
     return /^-?\d+$/.test(value);
   };
 
-  const string = isSecureText ? secureText(text) : text;
+  const string = isSecureText ? secureText(text) : `${screen}:${text}`;
 
   return (
     <Text
