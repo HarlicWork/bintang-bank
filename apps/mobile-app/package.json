@@ -30,6 +30,7 @@
     "@testing-library/jest-dom": "*",
     "i18next": "*",
     "react-i18next": "*",
-    "radix-ui-react-native-icons": "*"
+    "radix-ui-react-native-icons": "*",
+    "@react-navigation/bottom-tabs": "*"
   }
 }

@@ -1,13 +1,10 @@
 import React from 'react';
 
-import {
-  DashboardPage,
-  SomethingWrongPage,
-  StartupPage,
-} from '@bintang-bank/pages';
+import { SomethingWrongPage, StartupPage } from '@bintang-bank/pages';
 import { AppRoutes, RootStackParamList } from '@bintang-bank/shared';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import DashboardNavigator from './dashboard-navigator/DashboardNavigator';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -19,7 +16,10 @@ export function AppNavigator(props: AppNavigatorProps) {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name={AppRoutes.Startup} component={StartupPage} />
-        <Stack.Screen name={AppRoutes.Dashboard} children={DashboardPage} />
+        <Stack.Screen
+          name={AppRoutes.Dashboard}
+          children={DashboardNavigator}
+        />
         <Stack.Screen
           name={AppRoutes.SomethingWrong}
           component={SomethingWrongPage}
