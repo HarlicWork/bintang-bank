@@ -8,6 +8,19 @@
 
 This Nx React Native template project is here to jumpstart enterprise mobile app development project.
 
+## Features
+
+- [x] React Native
+- [x] [Nx RN Monorepo](https://nx.dev/recipes/react/react-native)
+- [x] TypeScript Setup
+- [x] [React Navigation](https://reactnavigation.org/)
+- [x] [React Native MMKV Storage](https://github.com/mrousavy/react-native-mmkv)
+- [x] [Redux Toolkit](https://redux-toolkit.js.org/)
+- [x] [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
+- [x] I18n using [react-i18next](https://www.npmjs.com/package/react-i18next)
+- [x] [Radix Icons](https://github.com/Eronred/radix-ui-react-native-icons/tree/main?tab=readme-ov-file)
+- [x] [React Native Unistyles 2.0](https://reactnativeunistyles.vercel.app/)
+
 ## Running tasks
 
 To execute tasks in this project with Nx, use the following syntax:
@@ -24,7 +37,7 @@ yarn ios:mobile
 yarn android:mobile
 ```
 
-Note: Check the `project.json` in mobile-app folder, watchman clear, ensure-symlink, sync-deps already automated when call above command using `dependOn` option.
+Note: Check the `project.json` in mobile-app folder, watchman clear, ensure-symlink, sync-deps already automated when call above command using `dependOn` option, along with metro resetCache.
 
 Targets can be defined in the `package.json` or `projects.json`. Learn more [in the docs](https://nx.dev/core-features/run-tasks).
 
