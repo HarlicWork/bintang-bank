@@ -1,5 +1,5 @@
-// Replace "com.mobileapp" here and below with your app's package name from the top of MainActivity.java
-package com.mobileapp;
+// Replace "com.bintangbank.mobileapp" here and below with your app's package name from the top of MainActivity.java
+package com.bintangbank.mobileapp;
 
 import com.wix.detox.Detox;
 import com.wix.detox.config.DetoxConfig;

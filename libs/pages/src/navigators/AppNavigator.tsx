@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SomethingWrongPage } from '../something-wrong-page/SomethingWrongPage';
 import { StartupPage } from '../startup-page/StartupPage';
 import DashboardNavigator from './dashboard-navigator/DashboardNavigator';
+import LoginPage from '../login-page/LoginPage';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -15,6 +16,7 @@ export function AppNavigator(props: AppNavigatorProps) {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name={AppRoutes.Startup} component={StartupPage} />
+        <Stack.Screen name={AppRoutes.Login} component={LoginPage} />
         <Stack.Screen
           name={AppRoutes.Dashboard}
           component={DashboardNavigator}

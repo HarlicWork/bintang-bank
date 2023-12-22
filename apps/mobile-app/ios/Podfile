@@ -27,6 +27,8 @@ end
 
 target 'MobileApp' do
   config = use_native_modules!
+  # use_frameworks! :linkage => :static
+  # $RNFirebaseAsStaticFramework = true
 
   # Flags change depending on the env values.
   flags = get_default_flags()
@@ -44,6 +46,13 @@ target 'MobileApp' do
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
+
+  pod 'GoogleUtilities', :modular_headers => true
+  pod 'Firebase', :modular_headers => true
+  pod 'FirebaseCoreInternal', :modular_headers => true
+  pod 'FirebaseCore', :modular_headers => true
+  pod 'FirebaseCoreExtension', :modular_headers => true
+  pod 'FirebaseInstallations', :modular_headers => true
 
   target 'MobileAppTests' do
     inherit! :complete

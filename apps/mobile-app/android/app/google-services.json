@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "612695817907",
+    "project_id": "bintangbank-e60c1",
+    "storage_bucket": "bintangbank-e60c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:612695817907:android:be6c9507a1ec787150bac6",
+        "android_client_info": {
+          "package_name": "com.bintangbank.mobileapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB897kybAUtXJaF-K8aiCjhXq-ecEplPCQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

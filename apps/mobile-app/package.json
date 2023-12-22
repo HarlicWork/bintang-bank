@@ -32,6 +32,9 @@
     "react-i18next": "*",
     "radix-ui-react-native-icons": "*",
     "@react-navigation/bottom-tabs": "*",
-    "react-native-linear-gradient": "*"
+    "react-native-linear-gradient": "*",
+    "@react-native-firebase/app": "*",
+    "@react-native-firebase/auth": "*",
+    "react-native-snackbar": "*"
   }
 }
