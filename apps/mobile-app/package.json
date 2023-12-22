@@ -31,6 +31,7 @@
     "i18next": "*",
     "react-i18next": "*",
     "radix-ui-react-native-icons": "*",
-    "@react-navigation/bottom-tabs": "*"
+    "@react-navigation/bottom-tabs": "*",
+    "react-native-linear-gradient": "*"
   }
 }

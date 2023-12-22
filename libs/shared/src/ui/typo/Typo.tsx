@@ -123,7 +123,7 @@ export function Typo({
       style={[
         presets[preset] as TextProps,
         {
-          color: color ? color : theme.colors.typography,
+          color: color ? color : theme.colors.primary,
           textAlign: textAlign,
         },
         styleOverride,

@@ -23,7 +23,7 @@ const stylesheet = createStyleSheet(({ colors }) => ({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.onPrimary,
+    backgroundColor: colors.background,
   },
 }));
 

@@ -7,6 +7,9 @@ import {
 import React from 'react';
 
 import { DashboardTabBar } from '@bintang-bank/features';
+import { createStyleSheet, useStyles } from 'react-native-unistyles';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { View } from 'react-native';
 
 const Tab = createBottomTabNavigator<DashboardParamList>();
 
@@ -14,25 +17,41 @@ const Tab = createBottomTabNavigator<DashboardParamList>();
 export interface DashboardNavigatorProps {}
 
 export function DashboardNavigator(props: DashboardNavigatorProps) {
+  const { styles } = useStyles(stylesheet);
   return (
-    <Tab.Navigator
-      backBehavior="history"
-      screenOptions={{
-        headerShown: false,
-      }}
-      tabBar={({ state, descriptors, navigation }: BottomTabBarProps) => (
-        <DashboardTabBar
-          state={state}
-          descriptors={descriptors}
-          navigation={navigation}
-        />
-      )}
-    >
-      <Tab.Screen name={AppRoutes.Home} component={HomePage} />
-      <Tab.Screen name={AppRoutes.Accounts} component={AccountsPage} />
-      <Tab.Screen name={AppRoutes.Settings} component={SettingsPage} />
-    </Tab.Navigator>
+    <View style={styles.topSafeArea}>
+      <SafeAreaView edges={['bottom']} style={styles.safeAreaView}>
+        <Tab.Navigator
+          backBehavior="history"
+          screenOptions={{
+            headerShown: false,
+          }}
+          tabBar={({ state, descriptors, navigation }: BottomTabBarProps) => (
+            <DashboardTabBar
+              state={state}
+              descriptors={descriptors}
+              navigation={navigation}
+            />
+          )}
+        >
+          <Tab.Screen name={AppRoutes.Home} component={HomePage} />
+          <Tab.Screen name={AppRoutes.Accounts} component={AccountsPage} />
+          <Tab.Screen name={AppRoutes.Settings} component={SettingsPage} />
+        </Tab.Navigator>
+      </SafeAreaView>
+    </View>
   );
 }
+
+const stylesheet = createStyleSheet(({ colors }) => ({
+  topSafeArea: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
+  safeAreaView: {
+    flex: 1,
+    backgroundColor: colors.primary,
+  },
+}));
 
 export default DashboardNavigator;

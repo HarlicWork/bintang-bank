@@ -1,15 +1,16 @@
-import { Typo } from '@bintang-bank/shared';
+import { Icon, Typo } from '@bintang-bank/shared';
 import {
   BottomTabDescriptorMap,
   BottomTabNavigationEventMap,
+  BottomTabNavigationOptions,
 } from '@react-navigation/bottom-tabs/lib/typescript/src/types';
 import {
   NavigationHelpers,
   ParamListBase,
   TabNavigationState,
 } from '@react-navigation/native';
-import { createStyleSheet, useStyles } from 'react-native-unistyles';
 import { TouchableOpacity, View } from 'react-native';
+import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 /* eslint-disable-next-line */
 export interface DashboardTabBarProps {
@@ -23,18 +24,42 @@ export function DashboardTabBar({
   descriptors,
   navigation,
 }: DashboardTabBarProps) {
-  const { styles } = useStyles(stylesheet);
+  const { styles, theme } = useStyles(stylesheet);
+
+  const setLabel = (
+    options: BottomTabNavigationOptions,
+    route: { name: string }
+  ) => {
+    let label;
+    if (options.tabBarLabel !== undefined) {
+      label = options.tabBarLabel;
+    } else if (options.title !== undefined) {
+      label = options.title;
+    } else {
+      label = route.name;
+    }
+
+    return label;
+  };
+
+  const setIcon = (labelName: string): string => {
+    switch (labelName) {
+      case 'Home':
+        return 'home';
+      case 'Accounts':
+        return 'id-card';
+      case 'Settings':
+        return 'settings';
+      default:
+        return 'question-mark';
+    }
+  };
 
   return (
     <View style={styles.container}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
-        const label =
-          options.tabBarLabel !== undefined
-            ? options.tabBarLabel
-            : options.title !== undefined
-            ? options.title
-            : route.name;
+        const label = setLabel(options, route);
 
         const isFocused = state.index === index;
 
@@ -68,9 +93,17 @@ export function DashboardTabBar({
             onLongPress={onLongPress}
             style={styles.tabContainer(state)}
           >
+            <Icon
+              name={setIcon(label.toString())}
+              size={isFocused ? 24 : 22}
+              color={
+                isFocused ? theme.colors.onPrimary : theme.colors.inversePrimary
+              }
+            />
             <Typo
-              style={styles.lableStyle(isFocused)}
+              style={styles.labelStyle(isFocused)}
               text={label.toString()}
+              preset="title"
             />
           </TouchableOpacity>
         );
@@ -84,13 +117,14 @@ const stylesheet = createStyleSheet(({ colors }) => ({
   tabContainer: (state) => ({
     height: 60,
     width: `${100 / state.routes.length}%`,
-    backgroundColor: colors.onPrimary,
+    gap: 3,
+    backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
   }),
-  lableStyle: (isFocused) => ({
-    color: isFocused ? colors.typography : colors.onTypography,
-    fontSize: 13,
+  labelStyle: (isFocused) => ({
+    color: isFocused ? colors.onPrimary : colors.inversePrimary,
+    fontSize: isFocused ? 14 : 13,
   }),
 }));
 

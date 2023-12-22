@@ -14,6 +14,9 @@
     "welcome": "Welcome",
     "yes": "Yes",
     "hello": "Hello {{name}}!",
-    "internetConnectionError": "Please check you internet connectivity."
+    "internetConnectionError": "Please check you internet connectivity.",
+    "home": "Home",
+    "accounts": "Accounts",
+    "settings": "Settings"
   }
 }
