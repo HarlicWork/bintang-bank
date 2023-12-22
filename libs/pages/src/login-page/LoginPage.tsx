@@ -1,45 +1,22 @@
-import {
-  AppRoutes,
-  RootStackParamList,
-  SafeScreen,
-  logger,
-} from '@bintang-bank/shared';
-import React, { useState } from 'react';
+import { SafeScreen } from '@bintang-bank/shared';
+import { useState } from 'react';
 
-import { View, TextInput, Button } from 'react-native';
+import { useAuth } from '@bintang-bank/entities';
+import { Button, TextInput, View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
-import auth from '@react-native-firebase/auth';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 /* eslint-disable-next-line */
 export interface LoginPageProps {}
 
 export function LoginPage(props: LoginPageProps) {
-  const { styles } = useStyles(stylesheet);
+  const { styles, theme } = useStyles(stylesheet);
+  const { signInUser, isLoading } = useAuth();
+
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  const [loading, setLoading] = useState<boolean>(false);
-
-  const { navigate } = useNavigation<NavigationProp<RootStackParamList>>();
-
-  const onHandleSubmit = () => {
-    setLoading(true);
-
-    auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        setLoading(false);
-        // Signed in
-        logger('userCredential', userCredential);
-        navigate(AppRoutes.Dashboard, undefined);
-      })
-      .catch((error) => {
-        setLoading(false);
-        logger('error', error);
-        // var errorCode = error.code;
-        // var errorMessage = error.message;
-      });
+  const onHandleLogin = () => {
+    signInUser(email, password);
   };
 
   return (
@@ -50,30 +27,34 @@ export function LoginPage(props: LoginPageProps) {
             style={{
               height: 40,
               width: 200,
-              borderColor: 'gray',
+              padding: 10,
+              borderColor: theme.colors.onBackground,
+              borderRadius: 10,
               borderWidth: 1,
             }}
             onChangeText={(text) => setEmail(text)}
             placeholder="Email"
             value={email}
             autoCapitalize="none"
-            editable={!loading}
+            editable={!isLoading}
           />
           <TextInput
             style={{
               height: 40,
               width: 200,
-              borderColor: 'gray',
+              padding: 10,
+              borderColor: theme.colors.onBackground,
+              borderRadius: 10,
               borderWidth: 1,
             }}
             onChangeText={(value) => setPassword(value)}
             placeholder="Password"
             secureTextEntry={true}
             value={password}
-            editable={!loading}
+            editable={!isLoading}
           />
         </View>
-        <Button title="Submit" onPress={onHandleSubmit} disabled={loading} />
+        <Button title="Login" onPress={onHandleLogin} disabled={isLoading} />
       </View>
     </SafeScreen>
   );
