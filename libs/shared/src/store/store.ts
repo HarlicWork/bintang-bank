@@ -1,31 +1,34 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import {
   FLUSH,
   PAUSE,
   PERSIST,
-  persistReducer,
-  persistStore,
   PURGE,
   REGISTER,
   REHYDRATE,
+  persistReducer,
+  persistStore,
 } from 'redux-persist';
 
 import { reduxStorage, storageMmkv } from '../context/storage';
 
-import counterReducer from '@bintang-bank/entities/counters/counterSlice';
-import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
+import authReducer from '@bintang-bank/entities/auth/slices/authSlice';
+import userReducer from '@bintang-bank/entities/users/slices/userSlice';
 import { initializeMMKVFlipper } from 'react-native-mmkv-flipper-plugin';
+import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
 
 const rootReducer = combineReducers({
-  counter: counterReducer,
+  auth: authReducer,
+  user: userReducer,
 });
 
 const persistConfig = {
   key: 'root',
   storage: reduxStorage,
   version: 0,
-  whitelist: ['counter'],
+  whitelist: ['user'],
   stateReconciler: autoMergeLevel2,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   migrate: (state: any) => {

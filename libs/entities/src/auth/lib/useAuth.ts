@@ -1,17 +1,19 @@
 // eslint-disable-next-line @nx/enforce-module-boundaries
-import { AppRoutes, RootStackParamList, logger } from '@bintang-bank/shared';
+import { useAppDispatch } from '@bintang-bank/shared';
 import auth from '@react-native-firebase/auth';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 
+import { UserState } from '@bintang-bank/entities/users/interfaces/UserState';
+import { setUserState } from '@bintang-bank/entities/users/slices/userSlice';
 import Snackbar from 'react-native-snackbar';
 import { useStyles } from 'react-native-unistyles';
 import { Error } from '../interfaces/Error';
+import { setAuth } from '../slices/authSlice';
 import { getErrorText } from './getErrorText';
 
 export const useAuth = () => {
   const { theme } = useStyles();
-  const { navigate } = useNavigation<NavigationProp<RootStackParamList>>();
+  const dispatch = useAppDispatch();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -20,12 +22,24 @@ export const useAuth = () => {
     try {
       const result = await auth().signInWithEmailAndPassword(email, password);
 
+      const refreshToken = await result.user?.getIdToken();
+
+      const user: UserState = {
+        displayName: result.user?.displayName,
+        email: result.user?.email,
+        phoneNumber: result.user?.phoneNumber,
+        photoURL: result.user?.photoURL,
+        uid: result.user?.uid,
+        refreshToken,
+      };
+
       setIsLoading(false);
-      navigate(AppRoutes.Dashboard, undefined);
-      logger('result', result);
+
+      dispatch(setUserState(user));
+      dispatch(setAuth(true));
     } catch (error) {
       setIsLoading(false);
-      logger('error', error);
+
       Snackbar.show({
         text: getErrorText(error as Error),
         duration: Snackbar.LENGTH_LONG,

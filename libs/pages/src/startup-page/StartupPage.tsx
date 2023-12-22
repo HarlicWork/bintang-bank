@@ -11,6 +11,7 @@ import {
   SafeScreen,
 } from '@bintang-bank/shared';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { useAppSelector } from '@bintang-bank/shared/store/hooks';
 
 /* eslint-disable-next-line */
 export interface StartupPageProps {}
@@ -18,6 +19,7 @@ export interface StartupPageProps {}
 export function StartupPage(props: StartupPageProps) {
   const { styles, theme } = useStyles(stylesheet);
   const { reset } = useNavigation<NavigationProp<RootStackParamList>>();
+  const tokenIsExist = useAppSelector((state) => state.user.refreshToken);
 
   const init = async () => {
     await new Promise((resolve) =>
@@ -25,6 +27,15 @@ export function StartupPage(props: StartupPageProps) {
         resolve(true);
       }, 2000)
     );
+
+    if (tokenIsExist) {
+      reset({
+        index: 0,
+        routes: [{ name: AppRoutes.Dashboard }],
+      });
+
+      return;
+    }
 
     reset({
       index: 0,
