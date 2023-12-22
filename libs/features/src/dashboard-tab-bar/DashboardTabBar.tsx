@@ -2,6 +2,7 @@ import { Typo } from '@bintang-bank/shared';
 import {
   BottomTabDescriptorMap,
   BottomTabNavigationEventMap,
+  BottomTabNavigationOptions,
 } from '@react-navigation/bottom-tabs/lib/typescript/src/types';
 import {
   NavigationHelpers,
@@ -25,16 +26,27 @@ export function DashboardTabBar({
 }: DashboardTabBarProps) {
   const { styles } = useStyles(stylesheet);
 
+  const setLabel = (
+    options: BottomTabNavigationOptions,
+    route: { name: string }
+  ) => {
+    let label;
+    if (options.tabBarLabel !== undefined) {
+      label = options.tabBarLabel;
+    } else if (options.title !== undefined) {
+      label = options.title;
+    } else {
+      label = route.name;
+    }
+
+    return label;
+  };
+
   return (
     <View style={styles.container}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
-        const label =
-          options.tabBarLabel !== undefined
-            ? options.tabBarLabel
-            : options.title !== undefined
-            ? options.title
-            : route.name;
+        const label = setLabel(options, route);
 
         const isFocused = state.index === index;
 
