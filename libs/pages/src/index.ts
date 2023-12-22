@@ -1,3 +1,4 @@
+export * from './login-page/LoginPage';
 export * from './accounts-page/AccountsPage';
 export * from './home-page/HomePage';
 export * from './settings-page/SettingsPage';

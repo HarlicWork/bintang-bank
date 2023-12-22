@@ -5,4 +5,5 @@ export enum AppRoutes {
   Home = 'Home',
   Settings = 'Settings',
   Accounts = 'Accounts',
+  Login = 'Login',
 }
