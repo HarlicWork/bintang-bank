@@ -2,7 +2,7 @@ import { SafeScreen, Typo } from '@bintang-bank/shared';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 import { View } from 'react-native';
-import { CommonHeaderWidget } from '@bintang-bank/widgets';
+import { CommonHeaderPrimaryWidget } from '@bintang-bank/widgets';
 
 /* eslint-disable-next-line */
 export interface HomePageProps {}
@@ -12,12 +12,12 @@ export function HomePage(props: HomePageProps) {
 
   return (
     <SafeScreen>
-      <CommonHeaderWidget headerTitle="Home" />
+      <CommonHeaderPrimaryWidget username="Haliq" />
       <View style={styles.container}>
         <Typo
           screen={['home']}
           text="greetings"
-          color={theme.colors.onTypography}
+          color={theme.colors.primary}
           preset="h3"
         />
       </View>

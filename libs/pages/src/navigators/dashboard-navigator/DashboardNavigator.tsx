@@ -50,7 +50,7 @@ const stylesheet = createStyleSheet(({ colors }) => ({
   },
   safeAreaView: {
     flex: 1,
-    backgroundColor: colors.onPrimary,
+    backgroundColor: colors.primary,
   },
 }));
 

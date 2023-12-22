@@ -45,7 +45,7 @@ export function StartupPage(props: StartupPageProps) {
           customStyles={styles.imageStyles}
           resizeMode="cover"
         />
-        <LoadingIndicator size="small" color={theme.colors.typography} />
+        <LoadingIndicator size="small" color={theme.colors.tertiary} />
       </View>
     </SafeScreen>
   );

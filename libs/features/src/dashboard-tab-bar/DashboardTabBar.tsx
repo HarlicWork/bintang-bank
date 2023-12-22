@@ -1,4 +1,4 @@
-import { Typo } from '@bintang-bank/shared';
+import { Icon, Typo } from '@bintang-bank/shared';
 import {
   BottomTabDescriptorMap,
   BottomTabNavigationEventMap,
@@ -9,8 +9,8 @@ import {
   ParamListBase,
   TabNavigationState,
 } from '@react-navigation/native';
-import { createStyleSheet, useStyles } from 'react-native-unistyles';
 import { TouchableOpacity, View } from 'react-native';
+import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 /* eslint-disable-next-line */
 export interface DashboardTabBarProps {
@@ -24,7 +24,7 @@ export function DashboardTabBar({
   descriptors,
   navigation,
 }: DashboardTabBarProps) {
-  const { styles } = useStyles(stylesheet);
+  const { styles, theme } = useStyles(stylesheet);
 
   const setLabel = (
     options: BottomTabNavigationOptions,
@@ -40,6 +40,19 @@ export function DashboardTabBar({
     }
 
     return label;
+  };
+
+  const setIcon = (labelName: string): string => {
+    switch (labelName) {
+      case 'Home':
+        return 'home';
+      case 'Accounts':
+        return 'id-card';
+      case 'Settings':
+        return 'settings';
+      default:
+        return 'question-mark';
+    }
   };
 
   return (
@@ -80,9 +93,17 @@ export function DashboardTabBar({
             onLongPress={onLongPress}
             style={styles.tabContainer(state)}
           >
+            <Icon
+              name={setIcon(label.toString())}
+              size={isFocused ? 24 : 22}
+              color={
+                isFocused ? theme.colors.onPrimary : theme.colors.inversePrimary
+              }
+            />
             <Typo
-              style={styles.lableStyle(isFocused)}
+              style={styles.labelStyle(isFocused)}
               text={label.toString()}
+              preset="title"
             />
           </TouchableOpacity>
         );
@@ -96,13 +117,14 @@ const stylesheet = createStyleSheet(({ colors }) => ({
   tabContainer: (state) => ({
     height: 60,
     width: `${100 / state.routes.length}%`,
-    backgroundColor: colors.onPrimary,
+    gap: 3,
+    backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
   }),
-  lableStyle: (isFocused) => ({
-    color: isFocused ? colors.typography : colors.onTypography,
-    fontSize: 13,
+  labelStyle: (isFocused) => ({
+    color: isFocused ? colors.onPrimary : colors.inversePrimary,
+    fontSize: isFocused ? 14 : 13,
   }),
 }));
 
