@@ -1,17 +1,18 @@
 import { Icon, Typo } from '@bintang-bank/shared';
+import { useAppSelector } from '@bintang-bank/shared/store/hooks';
 
 import { View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 /* eslint-disable-next-line */
-export interface CommonHeaderPrimaryWidgetProps {
-  username: string;
-}
+export interface CommonHeaderPrimaryWidgetProps {}
 
-export function CommonHeaderPrimaryWidget({
-  username,
-}: CommonHeaderPrimaryWidgetProps) {
+export function CommonHeaderPrimaryWidget(
+  props: CommonHeaderPrimaryWidgetProps
+) {
   const { styles, theme } = useStyles(stylesheet);
+
+  const username = useAppSelector((state) => state.user.displayName);
 
   return (
     <View style={styles.container}>
@@ -25,7 +26,11 @@ export function CommonHeaderPrimaryWidget({
           preset="h4"
           color={theme.colors.primary}
         />
-        <Typo text={username} preset="h4" color={theme.colors.primary} />
+        <Typo
+          text={username ? username : 'User'}
+          preset="h4"
+          color={theme.colors.primary}
+        />
       </View>
     </View>
   );
