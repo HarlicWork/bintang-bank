@@ -1,4 +1,4 @@
-package com.mobileapp;
+package com.bintangbank.mobileapp;
 import android.os.Bundle;
 
 import com.facebook.react.ReactActivity;
