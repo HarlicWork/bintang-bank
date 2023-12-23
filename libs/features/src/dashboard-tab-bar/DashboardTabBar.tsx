@@ -9,6 +9,7 @@ import {
   ParamListBase,
   TabNavigationState,
 } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 import { TouchableOpacity, View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
@@ -25,6 +26,7 @@ export function DashboardTabBar({
   navigation,
 }: DashboardTabBarProps) {
   const { styles, theme } = useStyles(stylesheet);
+  const { t } = useTranslation(['common']);
 
   const setLabel = (
     options: BottomTabNavigationOptions,
@@ -44,11 +46,11 @@ export function DashboardTabBar({
 
   const setIcon = (labelName: string): string => {
     switch (labelName) {
-      case 'Home':
+      case `${t('common.home')}`:
         return 'home';
-      case 'Accounts':
+      case `${t('common.accounts')}`:
         return 'id-card';
-      case 'Settings':
+      case `${t('common.settings')}`:
         return 'settings';
       default:
         return 'question-mark';
