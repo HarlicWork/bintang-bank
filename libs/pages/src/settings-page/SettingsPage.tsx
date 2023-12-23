@@ -15,7 +15,7 @@ export function SettingsPage(props: SettingsPageProps) {
         <Typo
           screen={['settings']}
           text="greetings"
-          color={theme.colors.onTypography}
+          color={theme.colors.primary}
           preset="h3"
         />
       </View>
