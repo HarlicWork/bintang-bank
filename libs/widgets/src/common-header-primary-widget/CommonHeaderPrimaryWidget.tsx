@@ -1,5 +1,5 @@
 import { Icon, Typo } from '@bintang-bank/shared';
-import { useAppSelector } from '@bintang-bank/shared/store/hooks';
+import { useAppSelector } from '@bintang-bank/entities/store/hooks';
 
 import { View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';

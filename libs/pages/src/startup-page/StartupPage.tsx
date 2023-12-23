@@ -11,7 +11,7 @@ import {
   SafeScreen,
 } from '@bintang-bank/shared';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { useAppSelector } from '@bintang-bank/shared/store/hooks';
+import { useAppSelector } from '@bintang-bank/entities/store/hooks';
 
 /* eslint-disable-next-line */
 export interface StartupPageProps {}

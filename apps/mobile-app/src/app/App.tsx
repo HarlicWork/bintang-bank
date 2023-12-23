@@ -2,7 +2,7 @@ import '@bintang-bank/shared/styles/unistyles';
 import React from 'react';
 
 import { SomethingWrongPage, AppNavigator } from '@bintang-bank/pages';
-import { persistor, store } from '@bintang-bank/shared';
+import { persistor, store } from '@bintang-bank/entities/store/store';
 import { Provider as StoreProvider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 

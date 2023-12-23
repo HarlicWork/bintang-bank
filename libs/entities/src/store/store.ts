@@ -12,7 +12,7 @@ import {
   persistStore,
 } from 'redux-persist';
 
-import { reduxStorage, storageMmkv } from '../context/storage';
+import { reduxStorage, storageMmkv } from '../../../shared/src/context/storage';
 
 import authReducer from '@bintang-bank/entities/auth/slices/authSlice';
 import userReducer from '@bintang-bank/entities/users/slices/userSlice';

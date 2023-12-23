@@ -1,5 +1,5 @@
 // eslint-disable-next-line @nx/enforce-module-boundaries
-import { useAppDispatch } from '@bintang-bank/shared';
+import { useAppDispatch } from '@bintang-bank/entities/store/hooks';
 import auth from '@react-native-firebase/auth';
 import { useState } from 'react';
 

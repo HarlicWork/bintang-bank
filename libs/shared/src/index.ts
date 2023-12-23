@@ -1,7 +1,6 @@
 export * from './constants/storageKeys';
 export * from './routers/app-routes';
 export * from './routers/root-stack-param-list.type';
-export * from './store/store';
 export * from './styles/unistyles';
 export * from './translation';
 export * from './ui/button/Button';
