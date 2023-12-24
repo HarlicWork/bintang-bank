@@ -2,6 +2,7 @@
   "common": {
     "accounts": "Akaun",
     "cancel": "Batal",
+    "changeLanguage": "Tukar Bahasa",
     "create": "Cipta",
     "delete": "Padam",
     "errorMessage": "Ralat tidak diketahui..!!!",

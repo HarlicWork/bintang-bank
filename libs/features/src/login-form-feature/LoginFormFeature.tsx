@@ -47,7 +47,7 @@ export function LoginFormFeature(props: LoginFormFeatureProps) {
       />
       <View style={styles.btnContainer}>
         <Button
-          title={t('common.login')}
+          title={t('common:common.login')}
           onPress={onHandleLogin}
           disabled={isLoading}
         />

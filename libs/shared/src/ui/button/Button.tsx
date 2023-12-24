@@ -22,7 +22,9 @@ export function Button({ title, onPress, disabled }: ButtonProps) {
       {disabled ? (
         <ActivityIndicator size={'small'} color={theme.colors.onPrimary} />
       ) : (
-        <Typo text={title} preset="title" color={theme.colors.onPrimary} />
+        <Typo preset="title" color={theme.colors.onPrimary}>
+          {title}
+        </Typo>
       )}
     </TouchableHighlight>
   );

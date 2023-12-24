@@ -2,6 +2,7 @@
   "common": {
     "accounts": "Accounts",
     "cancel": "Cancel",
+    "changeLanguage": "Change Language",
     "create": "Create",
     "delete": "Delete",
     "errorMessage": "Unknown error..!!!",
