@@ -21,12 +21,12 @@ export const userSlice = createSlice({
         ...action.payload,
       };
     },
-    reset: () => {
+    resetUser: () => {
       return initialState;
     },
   },
 });
 
-export const { setUserState, reset } = userSlice.actions;
+export const { setUserState, resetUser } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -1,4 +1,4 @@
-import { TouchableHighlight } from 'react-native';
+import { ActivityIndicator, TouchableHighlight } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 import Typo from '../typo/Typo';
 
@@ -19,7 +19,11 @@ export function Button({ title, onPress, disabled }: ButtonProps) {
       onPress={onPress}
       disabled={disabled}
     >
-      <Typo text={title} preset="title" color={theme.colors.onPrimary} />
+      {disabled ? (
+        <ActivityIndicator size={'small'} color={theme.colors.onPrimary} />
+      ) : (
+        <Typo text={title} preset="title" color={theme.colors.onPrimary} />
+      )}
     </TouchableHighlight>
   );
 }

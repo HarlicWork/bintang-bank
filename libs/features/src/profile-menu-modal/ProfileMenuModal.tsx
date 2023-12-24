@@ -1,3 +1,4 @@
+import { useAuth } from '@bintang-bank/entities';
 import { Typo } from '@bintang-bank/shared';
 import {
   BottomSheetBackdrop,
@@ -17,6 +18,7 @@ export interface ProfileMenuModalProps {}
 export const ProfileMenuModal = forwardRef<Ref, ProfileMenuModalProps>(
   (props, ref) => {
     const { styles } = useStyles(stylesheet);
+    const { logoutUser } = useAuth();
 
     const snapPoints = useMemo(() => ['50%', '70%'], []);
 
@@ -31,6 +33,10 @@ export const ProfileMenuModal = forwardRef<Ref, ProfileMenuModalProps>(
       []
     );
 
+    const onLogoutPress = () => {
+      logoutUser();
+    };
+
     return (
       <BottomSheetModal
         ref={ref}
@@ -41,7 +47,7 @@ export const ProfileMenuModal = forwardRef<Ref, ProfileMenuModalProps>(
         backdropComponent={renderBackdrop}
       >
         <BottomSheetView style={styles.container}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={onLogoutPress}>
             <Typo screen={['common']} text="common.logout" preset="h3" />
           </TouchableOpacity>
         </BottomSheetView>
