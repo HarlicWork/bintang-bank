@@ -39,11 +39,13 @@ export function LoginFormFeature(props: LoginFormFeatureProps) {
         value={password}
         editable={!isLoading}
       />
-      <Button
-        title={t('common.login')}
-        onPress={onHandleLogin}
-        disabled={isLoading}
-      />
+      <View style={styles.btnContainer}>
+        <Button
+          title={t('common.login')}
+          onPress={onHandleLogin}
+          disabled={isLoading}
+        />
+      </View>
     </View>
   );
 }
@@ -51,6 +53,7 @@ export function LoginFormFeature(props: LoginFormFeatureProps) {
 const stylesheet = createStyleSheet((theme) => ({
   loginFormContainer: {
     gap: 10,
+    alignItems: 'center',
   },
   usernameTextInput: {
     height: 40,
@@ -69,6 +72,9 @@ const stylesheet = createStyleSheet((theme) => ({
     borderRadius: 10,
     borderWidth: 1,
     color: theme.colors.onBackground,
+  },
+  btnContainer: {
+    width: 100,
   },
 }));
 
