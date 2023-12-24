@@ -1,4 +1,4 @@
-import { TouchableHighlight, TouchableOpacity } from 'react-native';
+import { TouchableHighlight } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 import Typo from '../typo/Typo';
 
