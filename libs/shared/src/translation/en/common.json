@@ -1,22 +1,24 @@
 {
   "common": {
+    "accounts": "Accounts",
     "cancel": "Cancel",
     "create": "Create",
     "delete": "Delete",
     "errorMessage": "Unknown error..!!!",
+    "hello": "Hello {{name}}!",
     "hey": "Hey there,",
+    "home": "Home",
+    "internetConnectionError": "Please check you internet connectivity.",
+    "login": "Login",
+    "logout": "Logout",
     "ohhNo": "Ohh Noo!!!",
-    "or": "Or",
     "ok": "OK",
+    "or": "Or",
     "save": "Save",
     "see_more": "See More",
+    "settings": "Settings",
     "skip": "Skip",
     "welcome": "Welcome",
-    "yes": "Yes",
-    "hello": "Hello {{name}}!",
-    "internetConnectionError": "Please check you internet connectivity.",
-    "home": "Home",
-    "accounts": "Accounts",
-    "settings": "Settings"
+    "yes": "Yes"
   }
 }
