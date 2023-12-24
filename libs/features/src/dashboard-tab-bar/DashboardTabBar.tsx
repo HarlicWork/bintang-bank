@@ -9,7 +9,6 @@ import {
   ParamListBase,
   TabNavigationState,
 } from '@react-navigation/native';
-import { useTranslation } from 'react-i18next';
 import { TouchableOpacity, View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
@@ -26,7 +25,6 @@ export function DashboardTabBar({
   navigation,
 }: DashboardTabBarProps) {
   const { styles, theme } = useStyles(stylesheet);
-  const { t } = useTranslation(['common']);
 
   const setLabel = (
     options: BottomTabNavigationOptions,
@@ -46,11 +44,11 @@ export function DashboardTabBar({
 
   const setIcon = (labelName: string): string => {
     switch (labelName) {
-      case `${t('common.home')}`:
+      case 'Home':
         return 'home';
-      case `${t('common.accounts')}`:
+      case 'Accounts':
         return 'id-card';
-      case `${t('common.settings')}`:
+      case 'Settings':
         return 'settings';
       default:
         return 'question-mark';
@@ -104,7 +102,8 @@ export function DashboardTabBar({
             />
             <Typo
               style={styles.labelStyle(isFocused)}
-              text={label.toString()}
+              screen={['common']}
+              text={`common.${label.toString().toLowerCase()}`}
               preset="title"
             />
           </TouchableOpacity>
