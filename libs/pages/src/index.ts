@@ -1,3 +1,4 @@
+export * from './create-display-name/CreateDisplayNamePage';
 export * from './login-page/LoginPage';
 export * from './accounts-page/AccountsPage';
 export * from './home-page/HomePage';
