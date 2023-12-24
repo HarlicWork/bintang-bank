@@ -1,20 +1,14 @@
 import { AccountsPage, HomePage, SettingsPage } from '@bintang-bank/pages';
-import {
-  AppRoutes,
-  BottomSheetModal,
-  DashboardParamList,
-} from '@bintang-bank/shared';
+import { AppRoutes, DashboardParamList } from '@bintang-bank/shared';
 import {
   BottomTabBarProps,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
-import React, { useRef } from 'react';
 
 import { DashboardTabBar } from '@bintang-bank/features';
-import { createStyleSheet, useStyles } from 'react-native-unistyles';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { View } from 'react-native';
-import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 const Tab = createBottomTabNavigator<DashboardParamList>();
 
@@ -24,10 +18,8 @@ export interface DashboardNavigatorProps {}
 export function DashboardNavigator(props: DashboardNavigatorProps) {
   const { styles } = useStyles(stylesheet);
 
-  const sheetRef = useRef<BottomSheet>(null);
-
   return (
-    <View style={styles.topSafeArea}>
+    <View style={styles.container}>
       <SafeAreaView edges={['bottom']} style={styles.safeAreaView}>
         <Tab.Navigator
           backBehavior="history"
@@ -47,13 +39,12 @@ export function DashboardNavigator(props: DashboardNavigatorProps) {
           <Tab.Screen name={AppRoutes.Settings} component={SettingsPage} />
         </Tab.Navigator>
       </SafeAreaView>
-      <BottomSheetModal bottomSheetRef={sheetRef} />
     </View>
   );
 }
 
 const stylesheet = createStyleSheet(({ colors }) => ({
-  topSafeArea: {
+  container: {
     flex: 1,
     backgroundColor: colors.background,
   },

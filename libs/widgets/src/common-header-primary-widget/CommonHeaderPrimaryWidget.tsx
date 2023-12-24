@@ -1,24 +1,25 @@
-import { Icon, Typo } from '@bintang-bank/shared';
 import { useAppSelector } from '@bintang-bank/entities/store/hooks';
+import { Icon, Typo } from '@bintang-bank/shared';
 
-import { View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 /* eslint-disable-next-line */
-export interface CommonHeaderPrimaryWidgetProps {}
+export interface CommonHeaderPrimaryWidgetProps {
+  onPress: () => void;
+}
 
-export function CommonHeaderPrimaryWidget(
-  props: CommonHeaderPrimaryWidgetProps
-) {
+export function CommonHeaderPrimaryWidget({
+  onPress,
+}: CommonHeaderPrimaryWidgetProps) {
   const { styles, theme } = useStyles(stylesheet);
-
   const username = useAppSelector((state) => state.user.displayName);
 
   return (
     <View style={styles.container}>
-      <View style={styles.circleAvatar}>
+      <TouchableOpacity style={styles.circleAvatar} onPress={onPress}>
         <Icon name="person" size={30} />
-      </View>
+      </TouchableOpacity>
       <View>
         <Typo
           screen={['home']}
