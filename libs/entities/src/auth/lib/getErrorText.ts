@@ -14,6 +14,8 @@ export const getErrorText = (error: Error) => {
       return 'Password should be at least 6 characters.';
     case 'auth/email-already-exists':
       return 'Email already exists.';
+    case 'auth/no-current-user':
+      return 'No current user logged in.';
     default:
       return 'Something went wrong.';
   }

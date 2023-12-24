@@ -4,12 +4,11 @@ import {
   BottomTabBarProps,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
-import React from 'react';
 
 import { DashboardTabBar } from '@bintang-bank/features';
-import { createStyleSheet, useStyles } from 'react-native-unistyles';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 const Tab = createBottomTabNavigator<DashboardParamList>();
 
@@ -18,8 +17,9 @@ export interface DashboardNavigatorProps {}
 
 export function DashboardNavigator(props: DashboardNavigatorProps) {
   const { styles } = useStyles(stylesheet);
+
   return (
-    <View style={styles.topSafeArea}>
+    <View style={styles.container}>
       <SafeAreaView edges={['bottom']} style={styles.safeAreaView}>
         <Tab.Navigator
           backBehavior="history"
@@ -44,7 +44,7 @@ export function DashboardNavigator(props: DashboardNavigatorProps) {
 }
 
 const stylesheet = createStyleSheet(({ colors }) => ({
-  topSafeArea: {
+  container: {
     flex: 1,
     backgroundColor: colors.background,
   },

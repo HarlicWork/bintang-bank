@@ -1,5 +1,5 @@
-import { AppRoutes, RootStackParamList } from '@bintang-bank/shared';
 import { useAppSelector } from '@bintang-bank/entities/store/hooks';
+import { AppRoutes, RootStackParamList } from '@bintang-bank/shared';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginPage from '../login-page/LoginPage';

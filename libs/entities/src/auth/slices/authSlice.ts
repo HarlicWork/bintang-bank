@@ -16,12 +16,12 @@ export const authSlice = createSlice({
         isAuth: action.payload,
       };
     },
-    reset: () => {
+    resetAuth: () => {
       return initialState;
     },
   },
 });
 
-export const { setAuthState: setAuth } = authSlice.actions;
+export const { setAuthState, resetAuth } = authSlice.actions;
 
 export default authSlice.reducer;
