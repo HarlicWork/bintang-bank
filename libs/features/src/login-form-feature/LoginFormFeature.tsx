@@ -1,5 +1,5 @@
 import { useAuth } from '@bintang-bank/entities';
-import { Button, TextInput } from '@bintang-bank/shared';
+import { Button, TextInput, Typo } from '@bintang-bank/shared';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -23,6 +23,12 @@ export function LoginFormFeature(props: LoginFormFeatureProps) {
 
   return (
     <View style={styles.loginFormContainer}>
+      <Typo
+        text="welcome"
+        screen={['login']}
+        preset="h1"
+        style={styles.welcomeLabel}
+      />
       <TextInput
         style={styles.usernameTextInput}
         onChangeText={(text) => setEmail(text)}
@@ -73,6 +79,7 @@ const stylesheet = createStyleSheet((theme) => ({
     borderWidth: 1,
     color: theme.colors.onBackground,
   },
+  welcomeLabel: { marginBottom: 20 },
   btnContainer: {
     width: 100,
   },
