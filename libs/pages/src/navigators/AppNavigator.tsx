@@ -6,6 +6,7 @@ import LoginPage from '../login-page/LoginPage';
 import { SomethingWrongPage } from '../something-wrong-page/SomethingWrongPage';
 import { StartupPage } from '../startup-page/StartupPage';
 import DashboardNavigator from './dashboard-navigator/DashboardNavigator';
+import CreateDisplayNamePage from '../create-display-name/CreateDisplayNamePage';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -14,11 +15,18 @@ export interface AppNavigatorProps {}
 
 export function AppNavigator(props: AppNavigatorProps) {
   const isAuth = useAppSelector((state) => state.auth.isAuth);
+  const isDisplayNameSet = useAppSelector((state) => state.user.displayName);
 
   return (
     <NavigationContainer>
       {isAuth ? (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
+          {isDisplayNameSet === null && (
+            <Stack.Screen
+              name={AppRoutes.CreateDisplayName}
+              component={CreateDisplayNamePage}
+            />
+          )}
           <Stack.Screen
             name={AppRoutes.Dashboard}
             component={DashboardNavigator}

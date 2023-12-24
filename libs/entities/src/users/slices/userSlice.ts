@@ -21,12 +21,18 @@ export const userSlice = createSlice({
         ...action.payload,
       };
     },
+    setDisplayName: (state, action: PayloadAction<string>) => {
+      return {
+        ...state,
+        displayName: action.payload,
+      };
+    },
     resetUser: () => {
       return initialState;
     },
   },
 });
 
-export const { setUserState, resetUser } = userSlice.actions;
+export const { setUserState, setDisplayName, resetUser } = userSlice.actions;
 
 export default userSlice.reducer;
