@@ -84,7 +84,7 @@ export type TextPresets = keyof typeof presets;
 
 /* eslint-disable-next-line */
 export interface TypoProps extends TextProps {
-  text: string;
+  text?: string;
   style?: StyleProp<TextStyle>;
   preset?: TextPresets;
   color?: string;
@@ -95,7 +95,7 @@ export interface TypoProps extends TextProps {
 
 export function Typo({
   children,
-  text,
+  text = '',
   color,
   preset = 'default',
   style: styleOverride,

@@ -1,22 +1,24 @@
 {
   "common": {
+    "accounts": "Akaun",
     "cancel": "Batal",
     "create": "Cipta",
     "delete": "Padam",
     "errorMessage": "Ralat tidak diketahui..!!!",
+    "hello": "Hello {{name}}!",
     "hey": "Hey there,",
+    "home": "Utama",
+    "internetConnectionError": "Sila periksa sambungan internet anda.",
+    "login": "Log Masuk",
+    "logout": "Log Keluar",
     "ohhNo": "Ohh Tidak!!!",
-    "or": "Atau",
     "ok": "OK",
+    "or": "Atau",
     "save": "Simpan",
     "see_more": "Lihat Lebih Banyak",
+    "settings": "Konfigurasi",
     "skip": "Lewat",
     "welcome": "Selamat Datang",
-    "yes": "Ya",
-    "hello": "Hello {{name}}!",
-    "internetConnectionError": "Sila periksa sambungan internet anda.",
-    "home": "Utama",
-    "accounts": "Akaun",
-    "settings": "Konfigurasi"
+    "yes": "Ya"
   }
 }

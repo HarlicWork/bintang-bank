@@ -15,7 +15,7 @@ export function AccountsPage(props: AccountsPageProps) {
         <Typo
           screen={['accounts']}
           text="greetings"
-          color={theme.colors.onTypography}
+          color={theme.colors.primary}
           preset="h3"
         />
       </View>
