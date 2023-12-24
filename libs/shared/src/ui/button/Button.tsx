@@ -6,7 +6,7 @@ import Typo from '../typo/Typo';
 export interface ButtonProps {
   title: string;
   onPress: () => void;
-  disabled: boolean;
+  disabled?: boolean;
 }
 
 export function Button({ title, onPress, disabled }: ButtonProps) {
