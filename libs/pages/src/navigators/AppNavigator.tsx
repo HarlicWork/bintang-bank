@@ -33,10 +33,6 @@ export function AppNavigator(props: AppNavigatorProps) {
           <Stack.Screen name={AppRoutes.Startup} component={StartupPage} />
           <Stack.Screen name={AppRoutes.Login} component={LoginPage} />
           <Stack.Screen
-            name={AppRoutes.Dashboard}
-            component={DashboardNavigator}
-          />
-          <Stack.Screen
             name={AppRoutes.SomethingWrong}
             component={SomethingWrongPage}
           />
