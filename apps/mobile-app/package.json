@@ -19,6 +19,7 @@
     "i18next": "*",
     "metro-config": "*",
     "radix-ui-react-native-icons": "*",
+    "react-hook-form": "*",
     "react-i18next": "*",
     "react-native-fast-image": "*",
     "react-native-flipper": "*",

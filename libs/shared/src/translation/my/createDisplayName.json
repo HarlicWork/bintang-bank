@@ -1,0 +1,8 @@
+{
+  "title": "Konfigurasi nama samaran",
+  "subtitle": "Sila masukkan nama samaran akaun anda",
+  "nickname": "Nama samaran",
+  "nickname_error_required": "Sila masukkan nama samaran anda",
+  "nickname_error_pattern": "Nama samaran hanya boleh mengandungi huruf.",
+  "nickname_error_minLength": "Nama samaran anda perlu sekurang-kurangnya 3 aksara"
+}

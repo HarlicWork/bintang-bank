@@ -6,4 +6,5 @@ export enum AppRoutes {
   Settings = 'Settings',
   Accounts = 'Accounts',
   Login = 'Login',
+  CreateDisplayName = 'CreateDisplayName',
 }

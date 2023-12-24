@@ -1,0 +1,8 @@
+{
+  "title": "Create your nickname",
+  "subtitle": "Please enter your account nickname",
+  "nickname": "Nickname",
+  "nickname_error_required": "Nickname is required",
+  "nickname_error_pattern": "Nickname can only contain letters.",
+  "nickname_error_minLength": "Nickname must be between 3 and 20 characters long."
+}

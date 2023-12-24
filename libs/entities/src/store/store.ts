@@ -28,7 +28,7 @@ const persistConfig = {
   key: 'root',
   storage: reduxStorage,
   version: 0,
-  whitelist: ['user'],
+  whitelist: [''],
   stateReconciler: autoMergeLevel2,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   migrate: (state: any) => {

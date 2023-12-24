@@ -1,3 +1,4 @@
+export * from './ui/button-secondary/ButtonSecondary';
 export * from './ui/bottom-sheet-modal/BottomSheetModal';
 export * from './constants/storageKeys';
 export * from './routers/app-routes';

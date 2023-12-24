@@ -19,7 +19,7 @@ import { getErrorText } from './getErrorText';
 export const useAuth = () => {
   const { theme } = useStyles();
   const dispatch = useAppDispatch();
-  const { reset } = useNavigation<NavigationProp<RootStackParamList>>();
+  const { navigate } = useNavigation<NavigationProp<RootStackParamList>>();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -61,10 +61,7 @@ export const useAuth = () => {
       dispatch(resetUser());
       dispatch(resetAuth());
 
-      reset({
-        index: 0,
-        routes: [{ name: AppRoutes.Login }],
-      });
+      navigate(AppRoutes.Startup);
     } catch (error) {
       Snackbar.show({
         text: getErrorText(error as Error),
