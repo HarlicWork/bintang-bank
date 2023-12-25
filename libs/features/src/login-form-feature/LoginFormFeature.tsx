@@ -1,6 +1,6 @@
 import { useAuth } from '@bintang-bank/entities';
-import { Button, TextInput, Typo } from '@bintang-bank/shared';
-import { useState } from 'react';
+import { Button, TextInput, TextInputRef, Typo } from '@bintang-bank/shared';
+import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { View } from 'react-native';
@@ -16,6 +16,8 @@ export function LoginFormFeature(props: LoginFormFeatureProps) {
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+
+  const passwordTextInputRef = useRef<TextInputRef>(null);
 
   const onHandleLogin = () => {
     signInUser(email, password);
@@ -35,8 +37,11 @@ export function LoginFormFeature(props: LoginFormFeatureProps) {
         value={email}
         autoCapitalize="none"
         editable={!isLoading}
+        returnKeyType="next"
+        onSubmitEditing={() => passwordTextInputRef.current?.onFocus()}
       />
       <TextInput
+        ref={passwordTextInputRef}
         onChangeText={(value) => setPassword(value)}
         placeholder={t('login:password')}
         secureTextEntry={true}
