@@ -30,7 +30,6 @@ export function LoginFormFeature(props: LoginFormFeatureProps) {
         style={styles.welcomeLabel}
       />
       <TextInput
-        style={styles.usernameTextInput}
         onChangeText={(text) => setEmail(text)}
         placeholder={t('login:email')}
         value={email}
@@ -38,7 +37,6 @@ export function LoginFormFeature(props: LoginFormFeatureProps) {
         editable={!isLoading}
       />
       <TextInput
-        style={styles.usernameTextInput}
         onChangeText={(value) => setPassword(value)}
         placeholder={t('login:password')}
         secureTextEntry={true}
@@ -60,24 +58,6 @@ const stylesheet = createStyleSheet((theme) => ({
   loginFormContainer: {
     gap: 10,
     alignItems: 'center',
-  },
-  usernameTextInput: {
-    height: 40,
-    width: 200,
-    padding: 10,
-    borderColor: theme.colors.onBackground,
-    borderRadius: 10,
-    borderWidth: 1,
-    color: theme.colors.onBackground,
-  },
-  passwordTextInput: {
-    height: 40,
-    width: 200,
-    padding: 10,
-    borderColor: theme.colors.onBackground,
-    borderRadius: 10,
-    borderWidth: 1,
-    color: theme.colors.onBackground,
   },
   welcomeLabel: { marginBottom: 20 },
   btnContainer: {

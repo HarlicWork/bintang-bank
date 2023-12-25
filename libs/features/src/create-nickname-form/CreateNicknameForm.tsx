@@ -55,12 +55,12 @@ export function CreateNicknameForm(props: CreateNicknameFormProps) {
           }}
           render={({ field: { onChange, onBlur, value } }) => (
             <TextInput
-              style={styles.nicknameTextInput}
               onChangeText={onChange}
               placeholder={t('createDisplayName:nickname')}
               value={value}
               autoCapitalize="none"
               editable={true}
+              style={styles.nicknameTextInput}
             />
           )}
           name="nickname"
@@ -85,7 +85,7 @@ export function CreateNicknameForm(props: CreateNicknameFormProps) {
   );
 }
 
-const stylesheet = createStyleSheet((theme) => ({
+const stylesheet = createStyleSheet(() => ({
   container: {
     flex: 1,
     marginTop: 32,
@@ -98,13 +98,7 @@ const stylesheet = createStyleSheet((theme) => ({
     alignItems: 'center',
   },
   nicknameTextInput: {
-    height: 40,
     width: 200,
-    padding: 10,
-    borderColor: theme.colors.onBackground,
-    borderRadius: 10,
-    borderWidth: 1,
-    color: theme.colors.onBackground,
   },
   btnContainer: {
     width: 200,

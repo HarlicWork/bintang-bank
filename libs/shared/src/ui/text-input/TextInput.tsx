@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import {
   TextInput as NativeTextInput,
   StyleProp,
   TextStyle,
 } from 'react-native';
+import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 /* eslint-disable-next-line */
 export interface TextInputProps {
@@ -24,17 +26,35 @@ export function TextInput({
   editable = true,
   secureTextEntry = false,
 }: TextInputProps) {
+  const { styles } = useStyles(stylesheet);
+  const [isFocused, setIsFocused] = useState<boolean>(false);
+
   return (
     <NativeTextInput
-      style={style}
+      style={[styles.defaultStyles, styles.isFocused(isFocused), style]}
       onChangeText={onChangeText}
       placeholder={placeholder}
       value={value}
       autoCapitalize={autoCapitalize}
       editable={editable}
       secureTextEntry={secureTextEntry}
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
     />
   );
 }
+
+const stylesheet = createStyleSheet((theme) => ({
+  defaultStyles: {
+    height: 40,
+    width: 200,
+    padding: 10,
+    borderRadius: 10,
+    borderWidth: 1,
+  },
+  isFocused: (isFocused) => ({
+    borderColor: isFocused ? theme.colors.outline : theme.colors.outlineVariant,
+  }),
+}));
 
 export default TextInput;
