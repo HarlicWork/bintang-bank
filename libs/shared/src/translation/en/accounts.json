@@ -1,3 +1,5 @@
 {
-  "greetings": "Welcome to Accounts Page!"
+  "change_accounts": "Change Accounts",
+  "greetings": "Welcome to Accounts Page!",
+  "wip": "Account List Work in Progress"
 }

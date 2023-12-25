@@ -6,6 +6,7 @@ export type RootStackParamList = {
   [AppRoutes.SomethingWrong]: undefined;
   [AppRoutes.Dashboard]: undefined;
   [AppRoutes.CreateDisplayName]: undefined;
+  [AppRoutes.GeneralModal]: undefined;
 };
 
 export type DashboardParamList = {

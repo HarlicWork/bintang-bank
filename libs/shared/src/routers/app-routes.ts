@@ -7,4 +7,5 @@ export enum AppRoutes {
   Accounts = 'Accounts',
   Login = 'Login',
   CreateDisplayName = 'CreateDisplayName',
+  GeneralModal = 'GeneralModal',
 }
