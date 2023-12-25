@@ -56,19 +56,19 @@ export const TextInput = forwardRef<TextInputRef, TextInputProps>(
 
     return (
       <NativeTextInput
-        ref={textInputRef}
-        style={[styles.defaultStyles, styles.isFocused(isFocused), style]}
-        onChangeText={onChangeText}
-        placeholder={placeholder}
-        value={value}
         autoCapitalize={autoCapitalize}
         editable={editable}
-        secureTextEntry={secureTextEntry}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
-        onSubmitEditing={onSubmitEditing}
-        returnKeyType={returnKeyType}
         keyboardType={keyboardType}
+        onBlur={() => setIsFocused(false)}
+        onChangeText={onChangeText}
+        onFocus={() => setIsFocused(true)}
+        onSubmitEditing={onSubmitEditing}
+        placeholder={placeholder}
+        ref={textInputRef}
+        returnKeyType={returnKeyType}
+        secureTextEntry={secureTextEntry}
+        style={[styles.defaultStyles, styles.isFocused(isFocused), style]}
+        value={value}
       />
     );
   }
