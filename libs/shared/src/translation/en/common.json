@@ -6,6 +6,7 @@
     "create": "Create",
     "delete": "Delete",
     "errorMessage": "Unknown error..!!!",
+    "go_back": "Go Back",
     "hello": "Hello {{name}}!",
     "hey": "Hey there,",
     "home": "Home",

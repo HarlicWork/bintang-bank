@@ -6,6 +6,7 @@
     "create": "Cipta",
     "delete": "Padam",
     "errorMessage": "Ralat tidak diketahui..!!!",
+    "go_back": "Kembali",
     "hello": "Hello {{name}}!",
     "hey": "Hey there,",
     "home": "Utama",
