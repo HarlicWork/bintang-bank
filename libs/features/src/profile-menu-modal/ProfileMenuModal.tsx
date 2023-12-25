@@ -9,6 +9,7 @@ import { BottomSheetDefaultBackdropProps } from '@gorhom/bottom-sheet/lib/typesc
 import { forwardRef, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TouchableOpacity } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 type Ref = BottomSheetModal;
@@ -21,8 +22,9 @@ export const ProfileMenuModal = forwardRef<Ref, ProfileMenuModalProps>(
     const { styles } = useStyles(stylesheet);
     const { logoutUser } = useAuth();
     const { i18n } = useTranslation();
+    const insets = useSafeAreaInsets();
 
-    const snapPoints = useMemo(() => ['50%', '70%'], []);
+    const snapPoints = useMemo(() => ['80%', '100%'], []);
 
     const renderBackdrop = useCallback(
       (props: BottomSheetDefaultBackdropProps) => (
@@ -44,13 +46,18 @@ export const ProfileMenuModal = forwardRef<Ref, ProfileMenuModalProps>(
     };
 
     return (
+      // <SafeScreen>
       <BottomSheetModal
         ref={ref}
-        index={1}
+        index={0}
         snapPoints={snapPoints}
         enablePanDownToClose={true}
         backgroundStyle={styles.modalBackground}
         backdropComponent={renderBackdrop}
+        containerStyle={{
+          marginTop: insets.top,
+        }}
+        handleIndicatorStyle={styles.modalBackground}
       >
         <BottomSheetView style={styles.container}>
           <TouchableOpacity onPress={onLogoutPress}>
@@ -65,11 +72,15 @@ export const ProfileMenuModal = forwardRef<Ref, ProfileMenuModalProps>(
           </TouchableOpacity>
         </BottomSheetView>
       </BottomSheetModal>
+      // </SafeScreen>
     );
   }
 );
 
 const stylesheet = createStyleSheet(({ colors }) => ({
+  modalContainer: {
+    marginHorizontal: 24,
+  },
   container: {
     flex: 1,
     padding: 16,
