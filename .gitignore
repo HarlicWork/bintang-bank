@@ -111,3 +111,5 @@ yarn-error.log
 
 
 apps/mobile-app-e2e/artifacts
+apps/mobile-app/android/app/google-services.json
+apps/mobile-app/ios/GoogleService-Info.plist
