@@ -21,6 +21,13 @@ export interface TextInputProps {
   editable?: boolean;
   secureTextEntry?: boolean;
   returnKeyType?: 'done' | 'go' | 'next' | 'search' | 'send';
+  keyboardType?:
+    | 'default'
+    | 'number-pad'
+    | 'decimal-pad'
+    | 'numeric'
+    | 'email-address'
+    | 'phone-pad';
 }
 
 export const TextInput = forwardRef<TextInputRef, TextInputProps>(
@@ -35,6 +42,7 @@ export const TextInput = forwardRef<TextInputRef, TextInputProps>(
       editable,
       secureTextEntry,
       returnKeyType = 'done',
+      keyboardType = 'default',
     },
     ref
   ) => {
@@ -60,6 +68,7 @@ export const TextInput = forwardRef<TextInputRef, TextInputProps>(
         onBlur={() => setIsFocused(false)}
         onSubmitEditing={onSubmitEditing}
         returnKeyType={returnKeyType}
+        keyboardType={keyboardType}
       />
     );
   }

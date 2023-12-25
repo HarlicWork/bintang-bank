@@ -39,6 +39,7 @@ export function LoginFormFeature(props: LoginFormFeatureProps) {
         editable={!isLoading}
         returnKeyType="next"
         onSubmitEditing={() => passwordTextInputRef.current?.onFocus()}
+        keyboardType="email-address"
       />
       <TextInput
         ref={passwordTextInputRef}
