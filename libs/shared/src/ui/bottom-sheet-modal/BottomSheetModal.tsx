@@ -12,16 +12,18 @@ type BottomSheetModalRef = NativeBottomSheetModal;
 /* eslint-disable-next-line */
 export interface BottomSheetProps {
   children?: React.ReactNode;
+  snapPoints?: string[];
+  index?: number;
 }
 
 export const BottomSheetModal = forwardRef<
   BottomSheetModalRef,
   BottomSheetProps
->(({ children }, ref) => {
+>(({ children, snapPoints, index = 1 }, ref) => {
   const { styles } = useStyles(stylesheet);
   const insets = useSafeAreaInsets();
 
-  const snapPoints = useMemo(() => ['25%', '50%', '100%'], []);
+  const defaultSnapPoints = useMemo(() => ['25%', '50%', '100%'], []);
 
   const renderBackdrop = useCallback(
     (props: BottomSheetDefaultBackdropProps) => (
@@ -37,8 +39,8 @@ export const BottomSheetModal = forwardRef<
   return (
     <NativeBottomSheetModal
       ref={ref}
-      index={1}
-      snapPoints={snapPoints}
+      index={index}
+      snapPoints={snapPoints ? snapPoints : defaultSnapPoints}
       enablePanDownToClose={true}
       backgroundStyle={styles.modalBackground}
       backdropComponent={renderBackdrop}
