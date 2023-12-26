@@ -1,5 +1,5 @@
 import { useChangeNickname } from '@bintang-bank/entities';
-import { Button, TextInput, Typo, logger } from '@bintang-bank/shared';
+import { Button, TextInput, Typo } from '@bintang-bank/shared';
 import { Controller, FieldError, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -35,7 +35,6 @@ export function CreateNicknameForm(props: CreateNicknameFormProps) {
   };
 
   const onPressChangeNickname = handleSubmit((data) => {
-    logger('data', data);
     changeNickname(data.nickname);
   });
 

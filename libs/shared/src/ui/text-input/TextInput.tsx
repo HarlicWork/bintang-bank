@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import {
   TextInput as NativeTextInput,
   StyleProp,
@@ -6,43 +6,73 @@ import {
 } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
+export type TextInputRef = {
+  onFocus: () => void;
+};
+
 /* eslint-disable-next-line */
 export interface TextInputProps {
   style?: StyleProp<TextStyle>;
   onChangeText?: (text: string) => void;
+  onSubmitEditing?: () => void;
   placeholder?: string;
   value?: string;
   autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
   editable?: boolean;
   secureTextEntry?: boolean;
+  returnKeyType?: 'done' | 'go' | 'next' | 'search' | 'send';
+  keyboardType?:
+    | 'default'
+    | 'number-pad'
+    | 'decimal-pad'
+    | 'numeric'
+    | 'email-address'
+    | 'phone-pad';
 }
 
-export function TextInput({
-  style,
-  onChangeText,
-  placeholder,
-  value,
-  autoCapitalize = 'none',
-  editable = true,
-  secureTextEntry = false,
-}: TextInputProps) {
-  const { styles } = useStyles(stylesheet);
-  const [isFocused, setIsFocused] = useState<boolean>(false);
+export const TextInput = forwardRef<TextInputRef, TextInputProps>(
+  (
+    {
+      style,
+      onChangeText,
+      onSubmitEditing,
+      placeholder,
+      value,
+      autoCapitalize,
+      editable,
+      secureTextEntry,
+      returnKeyType = 'done',
+      keyboardType = 'default',
+    },
+    ref
+  ) => {
+    const { styles } = useStyles(stylesheet);
+    const [isFocused, setIsFocused] = useState<boolean>(false);
+    const textInputRef = useRef<NativeTextInput>(null);
 
-  return (
-    <NativeTextInput
-      style={[styles.defaultStyles, styles.isFocused(isFocused), style]}
-      onChangeText={onChangeText}
-      placeholder={placeholder}
-      value={value}
-      autoCapitalize={autoCapitalize}
-      editable={editable}
-      secureTextEntry={secureTextEntry}
-      onFocus={() => setIsFocused(true)}
-      onBlur={() => setIsFocused(false)}
-    />
-  );
-}
+    useImperativeHandle(ref, () => ({
+      onFocus: () => textInputRef.current?.focus(),
+    }));
+
+    return (
+      <NativeTextInput
+        autoCapitalize={autoCapitalize}
+        editable={editable}
+        keyboardType={keyboardType}
+        onBlur={() => setIsFocused(false)}
+        onChangeText={onChangeText}
+        onFocus={() => setIsFocused(true)}
+        onSubmitEditing={onSubmitEditing}
+        placeholder={placeholder}
+        ref={textInputRef}
+        returnKeyType={returnKeyType}
+        secureTextEntry={secureTextEntry}
+        style={[styles.defaultStyles, styles.isFocused(isFocused), style]}
+        value={value}
+      />
+    );
+  }
+);
 
 const stylesheet = createStyleSheet((theme) => ({
   defaultStyles: {

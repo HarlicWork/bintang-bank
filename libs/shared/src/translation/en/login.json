@@ -1,5 +1,7 @@
 {
-  "welcome": "Welcome to Bintang Bank",
+  "email_error_pattern": "Email is not valid",
   "email": "Email",
-  "password": "Password"
+  "field_error_required": "This field is required",
+  "password": "Password",
+  "welcome": "Welcome to Bintang Bank"
 }

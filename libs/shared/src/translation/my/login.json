@@ -1,5 +1,7 @@
 {
-  "welcome": "Selamat Datang ke Bintang Bank",
+  "email_error_pattern": "Sila masukkan emel yang sah",
   "email": "Emel",
-  "password": "Katalaluan"
+  "field_error_required": "Ruangan ini diperlukan",
+  "password": "Katalaluan",
+  "welcome": "Selamat Datang ke Bintang Bank"
 }
