@@ -14,7 +14,7 @@ export function Button({ title, onPress, disabled }: ButtonProps) {
 
   return (
     <TouchableHighlight
-      underlayColor={theme.colors.onPrimaryFixedVariant}
+      underlayColor={theme.colors.onPrimaryContainer}
       style={styles.container}
       onPress={onPress}
       disabled={disabled}
@@ -22,7 +22,7 @@ export function Button({ title, onPress, disabled }: ButtonProps) {
       {disabled ? (
         <ActivityIndicator size={'small'} color={theme.colors.onPrimary} />
       ) : (
-        <Typo preset="title" color={theme.colors.onPrimary}>
+        <Typo preset="title" color={theme.colors.onPrimary} textAlign="center">
           {title}
         </Typo>
       )}
@@ -33,11 +33,20 @@ export function Button({ title, onPress, disabled }: ButtonProps) {
 const stylesheet = createStyleSheet(({ colors }) => ({
   container: {
     width: 'auto',
+    height: 40,
     backgroundColor: colors.primary,
-    padding: 10,
-    borderRadius: 10,
+    paddingHorizontal: 24,
+    borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 3,
   },
 }));
 
