@@ -81,6 +81,7 @@ const stylesheet = createStyleSheet((theme) => ({
     padding: 10,
     borderRadius: 10,
     borderWidth: 1,
+    color: theme.colors.secondary,
   },
   isFocused: (isFocused) => ({
     borderColor: isFocused ? theme.colors.outline : theme.colors.outlineVariant,
