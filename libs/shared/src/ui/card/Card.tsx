@@ -1,4 +1,5 @@
-import { StyleProp, View, ViewStyle } from 'react-native';
+import { StyleProp, ViewStyle } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 /* eslint-disable-next-line */
@@ -8,8 +9,17 @@ export interface CardProps {
 }
 
 export function Card({ children, styles: customStyles }: CardProps) {
-  const { styles } = useStyles(stylesheet);
-  return <View style={[styles.container, customStyles]}>{children}</View>;
+  const { styles, theme } = useStyles(stylesheet);
+  return (
+    <LinearGradient
+      start={{ x: 0, y: 0.25 }}
+      end={{ x: 1, y: 2.0 }}
+      colors={[theme.card.primary, theme.card.onPrimary, theme.card.onPrimary]}
+      style={[styles.container, customStyles]}
+    >
+      {children}
+    </LinearGradient>
+  );
 }
 
 const stylesheet = createStyleSheet(({ colors }) => ({

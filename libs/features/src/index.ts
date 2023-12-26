@@ -1,3 +1,4 @@
+export * from './user-account-list/UserAccountList';
 export * from './account-selection-modal/AccountSelectionModal';
 export * from './create-nickname-form/CreateNicknameForm';
 export * from './profile-menu-modal/ProfileMenuModal';

@@ -50,6 +50,10 @@ export const lightTheme = {
     surfaceContainerHigh: '#E9E7EF',
     surfaceContainerHighest: '#E3E1E9',
   },
+  card: {
+    primary: '#749BC2',
+    onPrimary: '#4682A9',
+  },
   margins: {
     sm: 2,
     md: 4,
@@ -109,6 +113,10 @@ export const darkTheme = {
     surfaceContainer: '#1E1F25',
     surfaceContainerHigh: '#292A2F',
     surfaceContainerHighest: '#34343A',
+  },
+  card: {
+    primary: '#818FB4',
+    onPrimary: '#435585',
   },
   margins: {
     sm: 2,

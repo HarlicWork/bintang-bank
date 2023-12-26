@@ -11,7 +11,12 @@
           {
             "enforceBuildableLibDependency": true,
             "allowCircularSelfDependency": true,
-            "allow": [],
+            "allow": [
+              "@bintang-bank/shared",
+              "@bintang-bank/entities",
+              "@bintang-bank/features",
+              ""
+            ],
             "depConstraints": [
               {
                 "sourceTag": "*",

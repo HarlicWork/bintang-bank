@@ -1,6 +1,5 @@
-import React from 'react';
-
-import { View, Text } from 'react-native';
+import { UserAccountList } from '@bintang-bank/features';
+import { View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 /* eslint-disable-next-line */
@@ -11,7 +10,7 @@ export function AccountListTab(props: AccountListTabProps) {
 
   return (
     <View style={styles.container}>
-      <Text>Welcome to AccountListTab!</Text>
+      <UserAccountList />
     </View>
   );
 }
