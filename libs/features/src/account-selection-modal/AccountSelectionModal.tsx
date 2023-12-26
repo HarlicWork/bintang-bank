@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, useMemo } from 'react';
 import { BottomSheetModal, Typo } from '@bintang-bank/shared';
 import {
   BottomSheetFlatList,
@@ -9,7 +9,7 @@ import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 type BottomSheetModalRef = NativeBottomSheetModal;
 
-const accountListDemo = Array.from({ length: 20 }, (_, i) => {
+const accountListDemo = Array.from({ length: 10 }, (_, i) => {
   return {
     id: `${i}`,
     title: `Account ${i + 1}`,
@@ -25,8 +25,10 @@ export const AccountSelectionModal = forwardRef<
 >((props, ref) => {
   const { styles, theme } = useStyles(stylesheet);
 
+  const snapPoints = useMemo(() => ['25%', '60%'], []);
+
   return (
-    <BottomSheetModal ref={ref}>
+    <BottomSheetModal ref={ref} snapPoints={snapPoints} index={1}>
       <BottomSheetFlatList
         data={accountListDemo}
         keyExtractor={(i) => i.id}
