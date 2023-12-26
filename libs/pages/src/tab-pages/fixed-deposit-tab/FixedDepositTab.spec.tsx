@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
 
-import SafeScreen from './SafeScreen';
+import FixedDepositTab from './FixedDepositTab';
 
-describe('SafeScreen', () => {
+describe('FixedDepositTab', () => {
   it('should render successfully', () => {
-    const { root } = render(<SafeScreen />);
+    const { root } = render(<FixedDepositTab />);
     expect(root).toBeTruthy();
   });
 });

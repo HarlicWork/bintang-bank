@@ -1,5 +1,10 @@
 {
   "change_accounts": "Change Accounts",
   "greetings": "Welcome to Accounts Page!",
-  "wip": "Account List Work in Progress"
+  "wip": "Account List Work in Progress",
+  "accounts": "Accounts",
+  "cards": "Cards",
+  "fixed_deposits": "Fixed Deposits",
+  "loans": "Loans",
+  "wealth": "Wealth"
 }
