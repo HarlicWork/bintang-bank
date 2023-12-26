@@ -1,11 +1,6 @@
-import {
-  AppRoutes,
-  Button,
-  RootStackParamList,
-  SafeScreen,
-  Typo,
-} from '@bintang-bank/shared';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { useModalService } from '@bintang-bank/entities';
+import { AccountSelectionModal } from '@bintang-bank/features';
+import { Button, SafeScreen, Typo } from '@bintang-bank/shared';
 import { useTranslation } from 'react-i18next';
 
 import { View } from 'react-native';
@@ -17,23 +12,28 @@ export interface AccountsPageProps {}
 export function AccountsPage(props: AccountsPageProps) {
   const { styles, theme } = useStyles(stylesheet);
   const { t } = useTranslation(['common', 'accounts']);
-  const { navigate } = useNavigation<NavigationProp<RootStackParamList>>();
+
+  const { accountSelectionSheetRef } = useModalService();
+
+  const openAccountSelectionModal = () => {
+    accountSelectionSheetRef.current?.present();
+  };
 
   return (
     <SafeScreen style={styles.container}>
       <View style={styles.container}>
         <Typo
-          onPress={() => navigate(AppRoutes.GeneralModal)}
           screen={['accounts']}
           text="greetings"
           color={theme.colors.primary}
           preset="h3"
         />
         <Button
-          onPress={() => navigate(AppRoutes.GeneralModal)}
+          onPress={() => openAccountSelectionModal()}
           title={`${t('accounts:change_accounts')}`}
         />
       </View>
+      <AccountSelectionModal ref={accountSelectionSheetRef} />
     </SafeScreen>
   );
 }
