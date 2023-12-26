@@ -1,3 +1,4 @@
+export * from './templates/top-tab-layout/TopTabsLayout';
 export * from './constants/storageKeys';
 export * from './routers/app-routes';
 export * from './routers/root-stack-param-list.type';

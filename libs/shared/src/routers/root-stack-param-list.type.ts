@@ -15,6 +15,14 @@ export type DashboardParamList = {
   [AppRoutes.Accounts]: undefined;
 };
 
+export type AccountsStactkParamList = {
+  [AppRoutes.AccountList]: undefined;
+  [AppRoutes.CardList]: undefined;
+  [AppRoutes.FixedDeposit]: undefined;
+  [AppRoutes.Loan]: undefined;
+  [AppRoutes.Wealth]: undefined;
+};
+
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace ReactNavigation {

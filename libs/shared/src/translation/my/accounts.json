@@ -1,5 +1,10 @@
 {
   "change_accounts": "Tukar Pilihan Akaun",
   "greetings": "Selamat Datang ke halaman Akaun!",
-  "wip": "Penukaran Akaun masih dalam pembangunan."
+  "wip": "Penukaran Akaun masih dalam pembangunan.",
+  "accounts": "Senarai Akaun",
+  "cards": "Senarai Kad",
+  "fixed_deposits": "Simpanan Tetap",
+  "loans": "Pinjaman",
+  "wealth": "Senarai Aset"
 }

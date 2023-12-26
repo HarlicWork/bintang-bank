@@ -8,4 +8,9 @@ export enum AppRoutes {
   Login = 'Login',
   CreateDisplayName = 'CreateDisplayName',
   GeneralModal = 'GeneralModal',
+  AccountList = 'AccountList',
+  CardList = 'CardList',
+  FixedDeposit = 'FixedDeposit',
+  Loan = 'Loan',
+  Wealth = 'Wealth',
 }

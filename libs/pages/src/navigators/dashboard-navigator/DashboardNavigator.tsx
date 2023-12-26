@@ -1,5 +1,10 @@
-import { AccountsPage, HomePage, SettingsPage } from '@bintang-bank/pages';
-import { AppRoutes, DashboardParamList } from '@bintang-bank/shared';
+/* eslint-disable @nx/enforce-module-boundaries */
+import { HomePage, SettingsPage } from '@bintang-bank/pages';
+import {
+  AppRoutes,
+  DashboardParamList,
+  TopTabsLayout,
+} from '@bintang-bank/shared';
 import {
   BottomTabBarProps,
   createBottomTabNavigator,
@@ -35,7 +40,7 @@ export function DashboardNavigator(props: DashboardNavigatorProps) {
           )}
         >
           <Tab.Screen name={AppRoutes.Home} component={HomePage} />
-          <Tab.Screen name={AppRoutes.Accounts} component={AccountsPage} />
+          <Tab.Screen name={AppRoutes.Accounts} component={TopTabsLayout} />
           <Tab.Screen name={AppRoutes.Settings} component={SettingsPage} />
         </Tab.Navigator>
       </SafeAreaView>
