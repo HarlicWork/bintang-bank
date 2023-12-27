@@ -13,17 +13,19 @@ export interface SafeScreenProps {
   children: React.ReactNode;
   customBgColor?: string;
   style?: StyleProp<ViewStyle>;
+  edges?: ['top' | 'right' | 'bottom' | 'left'] | undefined;
 }
 
 export function SafeScreen({
   children,
   customBgColor,
   style = {},
+  edges = undefined,
 }: SafeScreenProps) {
   const { styles, theme } = useStyles(stylesheet);
 
   return (
-    <SafeAreaView style={styles.container(customBgColor, style)}>
+    <SafeAreaView style={styles.container(customBgColor, style)} edges={edges}>
       <StatusBar
         backgroundColor={theme.colors.background}
         barStyle={

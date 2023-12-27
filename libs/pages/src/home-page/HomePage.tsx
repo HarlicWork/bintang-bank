@@ -1,8 +1,8 @@
-import { SafeScreen, Typo } from '@bintang-bank/shared';
+import { SafeScreen, Typo, screenHeight } from '@bintang-bank/shared';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 import { useModalService } from '@bintang-bank/entities';
-import { ProfileMenuModal } from '@bintang-bank/features';
+import { ProfileMenuModal, ScrollableCards } from '@bintang-bank/features';
 import { CommonHeaderPrimaryWidget } from '@bintang-bank/widgets';
 import { View } from 'react-native';
 
@@ -18,15 +18,21 @@ export function HomePage(props: HomePageProps) {
   };
 
   return (
-    <SafeScreen>
+    <SafeScreen edges={['top']}>
       <CommonHeaderPrimaryWidget onPress={openProfileMenuModal} />
       <View style={styles.container}>
-        <Typo
-          screen={['home']}
-          text="greetings"
-          color={theme.colors.primary}
-          preset="h3"
-        />
+        <View style={styles.accountInfoContainer}>
+          <Typo
+            screen={['home']}
+            text="account_summary"
+            color={theme.colors.primary}
+            preset="h3"
+            textAlign="center"
+          />
+        </View>
+        <View style={styles.promoContainer}>
+          <ScrollableCards />
+        </View>
       </View>
       <ProfileMenuModal ref={profileMenuSheetRef} />
     </SafeScreen>
@@ -36,8 +42,14 @@ export function HomePage(props: HomePageProps) {
 const stylesheet = createStyleSheet(({ colors }) => ({
   container: {
     flex: 1,
-    alignItems: 'center',
+    backgroundColor: colors.background,
+  },
+  accountInfoContainer: {
+    height: screenHeight * 0.2,
     justifyContent: 'center',
+  },
+  promoContainer: {
+    flex: 1,
   },
 }));
 
