@@ -1,16 +1,19 @@
-import { SafeScreen, Typo, screenHeight } from '@bintang-bank/shared';
-import { createStyleSheet, useStyles } from 'react-native-unistyles';
-
 import { useModalService } from '@bintang-bank/entities';
-import { ProfileMenuModal, ScrollableCards } from '@bintang-bank/features';
-import { CommonHeaderPrimaryWidget } from '@bintang-bank/widgets';
+import { ProfileMenuModal } from '@bintang-bank/features';
+import { SafeScreen, screenHeight } from '@bintang-bank/shared';
+import {
+  CommonHeaderPrimaryWidget,
+  PromotionCardWidget,
+  TotalAccountDetailWidget,
+} from '@bintang-bank/widgets';
 import { View } from 'react-native';
+import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 /* eslint-disable-next-line */
 export interface HomePageProps {}
 
 export function HomePage(props: HomePageProps) {
-  const { styles, theme } = useStyles(stylesheet);
+  const { styles } = useStyles(stylesheet);
   const { profileMenuSheetRef } = useModalService();
 
   const openProfileMenuModal = () => {
@@ -22,16 +25,10 @@ export function HomePage(props: HomePageProps) {
       <CommonHeaderPrimaryWidget onPress={openProfileMenuModal} />
       <View style={styles.container}>
         <View style={styles.accountInfoContainer}>
-          <Typo
-            screen={['home']}
-            text="account_summary"
-            color={theme.colors.primary}
-            preset="h3"
-            textAlign="center"
-          />
+          <TotalAccountDetailWidget />
         </View>
         <View style={styles.promoContainer}>
-          <ScrollableCards />
+          <PromotionCardWidget />
         </View>
       </View>
       <ProfileMenuModal ref={profileMenuSheetRef} />
