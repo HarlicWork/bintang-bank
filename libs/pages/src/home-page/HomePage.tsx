@@ -14,11 +14,8 @@ export interface HomePageProps {}
 
 export function HomePage(props: HomePageProps) {
   const { styles } = useStyles(stylesheet);
-  const { profileMenuSheetRef } = useModalService();
 
-  const openProfileMenuModal = () => {
-    profileMenuSheetRef.current?.present();
-  };
+  const { profileMenuSheetRef, openProfileMenuModal } = useModalService();
 
   return (
     <SafeScreen edges={['top']}>
