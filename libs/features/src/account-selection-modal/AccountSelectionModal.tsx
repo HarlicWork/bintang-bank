@@ -1,13 +1,15 @@
-import { forwardRef, useMemo } from 'react';
 import { BottomSheetModal, Typo } from '@bintang-bank/shared';
 import {
   BottomSheetFlatList,
   BottomSheetModal as NativeBottomSheetModal,
 } from '@gorhom/bottom-sheet';
+import { Ref, forwardRef, useImperativeHandle, useMemo, useRef } from 'react';
 import { View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
-type BottomSheetModalRef = NativeBottomSheetModal;
+export type AccountSelectionModalRef = {
+  openModal: () => void;
+};
 
 const accountListDemo = Array.from({ length: 10 }, (_, i) => {
   return {
@@ -19,16 +21,30 @@ const accountListDemo = Array.from({ length: 10 }, (_, i) => {
 /* eslint-disable-next-line */
 export interface AccountSelectionModalProps {}
 
-export const AccountSelectionModal = forwardRef<
-  BottomSheetModalRef,
-  AccountSelectionModalProps
->((props, ref) => {
+function AccountSelectionModal(
+  props: AccountSelectionModalProps,
+  ref: Ref<AccountSelectionModalRef>
+) {
   const { styles, theme } = useStyles(stylesheet);
+
+  const bottomSheetModalRef = useRef<NativeBottomSheetModal>(null);
 
   const snapPoints = useMemo(() => ['25%', '60%'], []);
 
+  const openModal = () => {
+    bottomSheetModalRef.current?.present();
+  };
+
+  useImperativeHandle(ref, () => ({
+    openModal,
+  }));
+
   return (
-    <BottomSheetModal ref={ref} snapPoints={snapPoints} index={1}>
+    <BottomSheetModal
+      ref={bottomSheetModalRef}
+      snapPoints={snapPoints}
+      index={1}
+    >
       <BottomSheetFlatList
         data={accountListDemo}
         keyExtractor={(i) => i.id}
@@ -44,7 +60,7 @@ export const AccountSelectionModal = forwardRef<
       />
     </BottomSheetModal>
   );
-});
+}
 
 const stylesheet = createStyleSheet(({ colors }) => ({
   contentContainer: {
@@ -55,4 +71,4 @@ const stylesheet = createStyleSheet(({ colors }) => ({
   },
 }));
 
-export default AccountSelectionModal;
+export default forwardRef(AccountSelectionModal);

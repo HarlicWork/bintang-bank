@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { TouchableOpacity } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
-export type BottomSheetModalRef = {
+export type ProfileMenuModalRef = {
   openModal: () => void;
 };
 
@@ -18,7 +18,7 @@ export interface ProfileMenuModalProps {}
 
 function ProfileMenuModal<ProfileMenuModalProps>(
   props: ProfileMenuModalProps,
-  ref: Ref<BottomSheetModalRef>
+  ref: Ref<ProfileMenuModalRef>
 ) {
   const { styles } = useStyles(stylesheet);
   const { logoutUser } = useAuth();
