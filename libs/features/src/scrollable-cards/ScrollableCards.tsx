@@ -1,16 +1,17 @@
 import {
   Card,
   Paginator,
+  Typo,
   screenHeight,
   screenWidth,
 } from '@bintang-bank/shared';
 import { useRef } from 'react';
-import { Animated, FlatList, Platform, Text, View } from 'react-native';
+import { Animated, Platform, View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 export type Data = { id: number; name: string };
 
-const data = Array.from({ length: 4 }, (_, i): Data => {
+const data = Array.from({ length: 5 }, (_, i): Data => {
   return {
     id: i,
     name: `Item ${i + 1}`,
@@ -30,21 +31,23 @@ export function ScrollableCards({ horizontal = true }: ScrollableCardsProps) {
   const { styles } = useStyles(stylesheet);
 
   const scrollX = useRef(new Animated.Value(0)).current;
+  const viewConfigRef = useRef({ viewAreaCoveragePercentThreshold: 50 });
 
   const renderItem = ({ item }: { item: Data }) => {
     return (
       <Card styles={styles.cardContainerStyle}>
-        <Text>{item.name}</Text>
+        <Typo preset="title">{item.name}</Typo>
       </Card>
     );
   };
 
   return (
     <View style={styles.container}>
-      <FlatList
+      <Animated.FlatList
         data={data}
         keyExtractor={(item) => item.id.toString()}
         renderItem={renderItem}
+        viewabilityConfig={viewConfigRef.current}
         initialNumToRender={5}
         horizontal={horizontal}
         contentContainerStyle={{

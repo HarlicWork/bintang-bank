@@ -1,6 +1,8 @@
 import { Data } from '@bintang-bank/features';
-import { Animated, View, useWindowDimensions } from 'react-native';
+import { Animated } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
+
+import { ExpandingDot } from 'react-native-animated-pagination-dots';
 
 /* eslint-disable-next-line */
 export interface PaginatorProps {
@@ -9,51 +11,27 @@ export interface PaginatorProps {
 }
 
 export function Paginator({ data, scrollX }: PaginatorProps) {
-  const { styles } = useStyles(stylesheet);
-  const { width } = useWindowDimensions();
+  const { styles, theme } = useStyles(stylesheet);
 
   return (
-    <View style={styles.container}>
-      {data.map((item, index) => {
-        const inputRange = [
-          (index - 1) * width,
-          index * width,
-          (index + 1) * width,
-        ];
-
-        const dotWidth = scrollX.interpolate({
-          inputRange,
-          outputRange: [8, 16, 8],
-          extrapolate: 'clamp',
-        });
-
-        const opacity = scrollX.interpolate({
-          inputRange,
-          outputRange: [0.3, 1, 0.3],
-          extrapolate: 'clamp',
-        });
-
-        return (
-          <Animated.View
-            key={item.id}
-            style={[styles.dotIndicator, { width: dotWidth, opacity }]}
-          />
-        );
-      })}
-    </View>
+    <ExpandingDot
+      data={data}
+      expandingDotWidth={20}
+      scrollX={scrollX}
+      inActiveDotOpacity={0.6}
+      inActiveDotColor={theme.colors.onPrimaryFixedVariant}
+      activeDotColor={theme.colors.primary}
+      dotStyle={styles.dotIndicator}
+      containerStyle={styles.containerStyle}
+    />
   );
 }
 
-const stylesheet = createStyleSheet(({ colors }) => ({
-  container: {
-    flexDirection: 'row',
-  },
+const stylesheet = createStyleSheet(() => ({
+  containerStyle: { position: 'absolute', top: 150 },
   dotIndicator: {
     width: 8,
     height: 8,
-    borderRadius: 4,
-    backgroundColor: colors.primary,
-    marginHorizontal: 4,
   },
 }));
 
