@@ -1,10 +1,16 @@
-import { Card, screenHeight, screenWidth } from '@bintang-bank/shared';
-import { FlatList, Platform, Text } from 'react-native';
+import {
+  Card,
+  Paginator,
+  screenHeight,
+  screenWidth,
+} from '@bintang-bank/shared';
+import { useRef } from 'react';
+import { Animated, FlatList, Platform, Text, View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
-type Data = { id: number; name: string };
+export type Data = { id: number; name: string };
 
-const data = Array.from({ length: 10 }, (_, i): Data => {
+const data = Array.from({ length: 4 }, (_, i): Data => {
   return {
     id: i,
     name: `Item ${i + 1}`,
@@ -23,6 +29,8 @@ export interface ScrollableCardsProps {
 export function ScrollableCards({ horizontal = true }: ScrollableCardsProps) {
   const { styles } = useStyles(stylesheet);
 
+  const scrollX = useRef(new Animated.Value(0)).current;
+
   const renderItem = ({ item }: { item: Data }) => {
     return (
       <Card styles={styles.cardContainerStyle}>
@@ -32,32 +40,43 @@ export function ScrollableCards({ horizontal = true }: ScrollableCardsProps) {
   };
 
   return (
-    <FlatList
-      data={data}
-      keyExtractor={(item) => item.id.toString()}
-      renderItem={renderItem}
-      initialNumToRender={5}
-      horizontal={horizontal}
-      contentContainerStyle={{
-        paddingHorizontal:
-          Platform.OS === 'android' ? SPACING_FOR_CARD_INSET : 0,
-      }}
-      showsHorizontalScrollIndicator={false}
-      pagingEnabled
-      decelerationRate={0}
-      snapToInterval={CARD_WIDTH + 10}
-      snapToAlignment="center"
-      contentInset={{
-        top: 0,
-        left: SPACING_FOR_CARD_INSET,
-        bottom: 0,
-        right: SPACING_FOR_CARD_INSET,
-      }}
-    />
+    <View style={styles.container}>
+      <FlatList
+        data={data}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={renderItem}
+        initialNumToRender={5}
+        horizontal={horizontal}
+        contentContainerStyle={{
+          paddingHorizontal:
+            Platform.OS === 'android' ? SPACING_FOR_CARD_INSET : 0,
+        }}
+        showsHorizontalScrollIndicator={false}
+        pagingEnabled
+        decelerationRate={0}
+        snapToInterval={CARD_WIDTH + 10}
+        snapToAlignment="center"
+        contentInset={{
+          top: 0,
+          left: SPACING_FOR_CARD_INSET,
+          bottom: 0,
+          right: SPACING_FOR_CARD_INSET,
+        }}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+          { useNativeDriver: false }
+        )}
+      />
+      <Paginator data={data} scrollX={scrollX} />
+    </View>
   );
 }
 
 const stylesheet = createStyleSheet(({ colors }) => ({
+  container: {
+    alignItems: 'center',
+    gap: 4,
+  },
   cardContainerStyle: {
     width: CARD_WIDTH,
     height: CARD_HEIGHT,
