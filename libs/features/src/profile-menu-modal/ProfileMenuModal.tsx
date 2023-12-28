@@ -4,48 +4,57 @@ import {
   BottomSheetView,
   BottomSheetModal as NativeBottomSheetModal,
 } from '@gorhom/bottom-sheet';
-import { forwardRef } from 'react';
+import { Ref, forwardRef, useImperativeHandle, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TouchableOpacity } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
-type BottomSheetModalRef = NativeBottomSheetModal;
+export type BottomSheetModalRef = {
+  openModal: () => void;
+};
 
 /* eslint-disable-next-line */
 export interface ProfileMenuModalProps {}
 
-export const ProfileMenuModal = forwardRef<BottomSheetModalRef, ProfileMenuModalProps>(
-  (props, ref) => {
-    const { styles } = useStyles(stylesheet);
-    const { logoutUser } = useAuth();
-    const { i18n } = useTranslation();
+function ProfileMenuModal<ProfileMenuModalProps>(
+  props: ProfileMenuModalProps,
+  ref: Ref<BottomSheetModalRef>
+) {
+  const { styles } = useStyles(stylesheet);
+  const { logoutUser } = useAuth();
+  const { i18n } = useTranslation();
 
-    const onLogoutPress = () => {
-      logoutUser();
-    };
+  const bottomSheetModalRef = useRef<NativeBottomSheetModal>(null);
 
-    const onChangeLanguagePress = () => {
-      i18n.changeLanguage(i18n.language === 'en' ? 'my' : 'en');
-    };
+  const onLogoutPress = () => {
+    logoutUser();
+  };
 
-    return (
-      <BottomSheetModal ref={ref}>
-        <BottomSheetView style={styles.container}>
-          <TouchableOpacity onPress={onLogoutPress}>
-            <Typo screen={['common']} text="common.logout" preset="h3" />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={onChangeLanguagePress}>
-            <Typo
-              screen={['common']}
-              text="common.changeLanguage"
-              preset="h3"
-            />
-          </TouchableOpacity>
-        </BottomSheetView>
-      </BottomSheetModal>
-    );
-  }
-);
+  const onChangeLanguagePress = () => {
+    i18n.changeLanguage(i18n.language === 'en' ? 'my' : 'en');
+  };
+
+  const openModal = () => {
+    bottomSheetModalRef.current?.present();
+  };
+
+  useImperativeHandle(ref, () => ({
+    openModal,
+  }));
+
+  return (
+    <BottomSheetModal ref={bottomSheetModalRef}>
+      <BottomSheetView style={styles.container}>
+        <TouchableOpacity onPress={onLogoutPress}>
+          <Typo screen={['common']} text="common.logout" preset="h3" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={onChangeLanguagePress}>
+          <Typo screen={['common']} text="common.changeLanguage" preset="h3" />
+        </TouchableOpacity>
+      </BottomSheetView>
+    </BottomSheetModal>
+  );
+}
 
 const stylesheet = createStyleSheet(({ colors }) => ({
   container: {
@@ -55,4 +64,4 @@ const stylesheet = createStyleSheet(({ colors }) => ({
   },
 }));
 
-export default ProfileMenuModal;
+export default forwardRef(ProfileMenuModal);
