@@ -22,6 +22,7 @@
     "radix-ui-react-native-icons": "*",
     "react-hook-form": "*",
     "react-i18next": "*",
+    "react-native-animated-pagination-dots": "*",
     "react-native-fast-image": "*",
     "react-native-flipper": "*",
     "react-native-gesture-handler": "*",
