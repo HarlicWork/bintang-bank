@@ -1,6 +1,8 @@
 export enum AppRoutes {
   AccountList = 'AccountList',
   Accounts = 'Accounts',
+  AccountSelectionModal = 'AccountSelectionModal',
+  BottomSheetModal = 'BottomSheetModal',
   CardList = 'CardList',
   ConnectionError = 'ConnectionError',
   CreateDisplayName = 'CreateDisplayName',
@@ -10,6 +12,7 @@ export enum AppRoutes {
   Home = 'Home',
   Loan = 'Loan',
   Login = 'Login',
+  ProfileMenuModal = 'ProfileMenuModal',
   Settings = 'Settings',
   SomethingWrong = 'SomethingWrong',
   Startup = 'Startup',

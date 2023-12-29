@@ -1,4 +1,4 @@
-import { BottomSheetModal, Typo } from '@bintang-bank/shared';
+import { AppRoutes, BottomSheetModal, Typo } from '@bintang-bank/shared';
 import {
   BottomSheetFlatList,
   BottomSheetModal as NativeBottomSheetModal,
@@ -21,10 +21,10 @@ const accountListDemo = Array.from({ length: 10 }, (_, i) => {
 /* eslint-disable-next-line */
 export interface AccountSelectionModalProps {}
 
-function AccountSelectionModal(
+const AccountSelectionModal = (
   props: AccountSelectionModalProps,
   ref: Ref<AccountSelectionModalRef>
-) {
+) => {
   const { styles, theme } = useStyles(stylesheet);
 
   const bottomSheetModalRef = useRef<NativeBottomSheetModal>(null);
@@ -41,9 +41,10 @@ function AccountSelectionModal(
 
   return (
     <BottomSheetModal
+      index={1}
+      name={AppRoutes.AccountSelectionModal}
       ref={bottomSheetModalRef}
       snapPoints={snapPoints}
-      index={1}
     >
       <BottomSheetFlatList
         data={accountListDemo}
@@ -60,7 +61,7 @@ function AccountSelectionModal(
       />
     </BottomSheetModal>
   );
-}
+};
 
 const stylesheet = createStyleSheet(({ colors }) => ({
   contentContainer: {

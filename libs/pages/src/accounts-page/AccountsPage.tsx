@@ -16,7 +16,7 @@ export function AccountsPage(props: AccountsPageProps) {
   const { accountSelectionSheetRef } = useModalService();
 
   const openAccountSelectionModal = () => {
-    accountSelectionSheetRef.current?.present();
+    accountSelectionSheetRef.current?.openModal();
   };
 
   return (

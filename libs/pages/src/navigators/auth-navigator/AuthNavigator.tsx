@@ -15,6 +15,17 @@ export interface AuthNavigatorProps {}
 export function AuthNavigator(props: AuthNavigatorProps) {
   const isDisplayNameSet = useAppSelector((state) => state.user.displayName);
 
+  const screens = [
+    {
+      name: AppRoutes.Dashboard,
+      component: DashboardNavigator,
+    },
+    {
+      name: AppRoutes.SomethingWrong,
+      component: SomethingWrongPage,
+    },
+  ] as const;
+
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Group>
@@ -24,14 +35,13 @@ export function AuthNavigator(props: AuthNavigatorProps) {
             component={CreateDisplayNamePage}
           />
         )}
-        <Stack.Screen
-          name={AppRoutes.Dashboard}
-          component={DashboardNavigator}
-        />
-        <Stack.Screen
-          name={AppRoutes.SomethingWrong}
-          component={SomethingWrongPage}
-        />
+        {screens.map((screen, index) => (
+          <Stack.Screen
+            key={index}
+            name={screen.name}
+            component={screen.component}
+          />
+        ))}
       </Stack.Group>
       <Stack.Group
         screenOptions={{
