@@ -1,0 +1,55 @@
+import { useAppSelector } from '@bintang-bank/entities/store/hooks';
+import { AppRoutes, RootStackParamList } from '@bintang-bank/shared';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import ConnectionErrorPage from '../../connection-error-page/ConnectionErrorPage';
+import CreateDisplayNamePage from '../../create-display-name/CreateDisplayNamePage';
+import GeneralModalPage from '../../modal-pages/general-modal-page/GeneralModalPage';
+import SomethingWrongPage from '../../something-wrong-page/SomethingWrongPage';
+import DashboardNavigator from '../dashboard-navigator/DashboardNavigator';
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
+/* eslint-disable-next-line */
+export interface AuthNavigatorProps {}
+
+export function AuthNavigator(props: AuthNavigatorProps) {
+  const isDisplayNameSet = useAppSelector((state) => state.user.displayName);
+
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Group>
+        {isDisplayNameSet === null && (
+          <Stack.Screen
+            name={AppRoutes.CreateDisplayName}
+            component={CreateDisplayNamePage}
+          />
+        )}
+        <Stack.Screen
+          name={AppRoutes.Dashboard}
+          component={DashboardNavigator}
+        />
+        <Stack.Screen
+          name={AppRoutes.SomethingWrong}
+          component={SomethingWrongPage}
+        />
+      </Stack.Group>
+      <Stack.Group
+        screenOptions={{
+          presentation: 'card',
+        }}
+      >
+        <Stack.Screen
+          name={AppRoutes.GeneralModal}
+          component={GeneralModalPage}
+        />
+        <Stack.Screen
+          name={AppRoutes.ConnectionError}
+          component={ConnectionErrorPage}
+        />
+      </Stack.Group>
+    </Stack.Navigator>
+  );
+}
+
+export default AuthNavigator;
