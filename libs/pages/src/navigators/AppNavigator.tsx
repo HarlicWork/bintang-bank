@@ -23,7 +23,7 @@ export function AppNavigator(props: AppNavigatorProps) {
     Snackbar.show({
       text: `${t('common:common.internetConnectionError')}`,
       duration: Snackbar.LENGTH_LONG,
-      backgroundColor: theme.colors.errorContainer,
+      backgroundColor: theme.colors.error,
     });
 
     return (
