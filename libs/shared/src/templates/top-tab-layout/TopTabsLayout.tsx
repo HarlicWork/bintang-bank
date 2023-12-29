@@ -7,14 +7,14 @@ import {
   WealthTab,
 } from '@bintang-bank/pages';
 import { AppRoutes } from '@bintang-bank/shared/routers/app-routes';
-import { AccountsStactkParamList } from '@bintang-bank/shared/routers/root-stack-param-list.type';
+import { AccountsStackParamList } from '@bintang-bank/shared/routers/root-stack-param-list.type';
 import { screenWidth } from '@bintang-bank/shared/utils/dimensions';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
-const Tab = createMaterialTopTabNavigator<AccountsStactkParamList>();
+const Tab = createMaterialTopTabNavigator<AccountsStackParamList>();
 
 /* eslint-disable-next-line */
 export interface TopTabsLayoutProps {}
@@ -22,6 +22,34 @@ export interface TopTabsLayoutProps {}
 export function TopTabsLayout(props: TopTabsLayoutProps) {
   const { styles, theme } = useStyles(stylesheet);
   const { t } = useTranslation(['accounts']);
+
+  const tabs = [
+    {
+      name: AppRoutes.AccountList,
+      component: AccountListTab,
+      options: { tabBarLabel: t('accounts:accounts') },
+    },
+    {
+      name: AppRoutes.CardList,
+      component: CardListTab,
+      options: { tabBarLabel: t('accounts:cards') },
+    },
+    {
+      name: AppRoutes.FixedDeposit,
+      component: FixedDepositTab,
+      options: { tabBarLabel: t('accounts:fixed_deposits') },
+    },
+    {
+      name: AppRoutes.Loan,
+      component: LoanListTab,
+      options: { tabBarLabel: t('accounts:loans') },
+    },
+    {
+      name: AppRoutes.Wealth,
+      component: WealthTab,
+      options: { tabBarLabel: t('accounts:wealth') },
+    },
+  ] as const;
 
   return (
     <SafeAreaView edges={['top']} style={styles.safeAreaView}>
@@ -45,31 +73,14 @@ export function TopTabsLayout(props: TopTabsLayoutProps) {
           tabBarStyle: styles.tabBarStyle,
         }}
       >
-        <Tab.Screen
-          name={AppRoutes.AccountList}
-          component={AccountListTab}
-          options={{ tabBarLabel: t('accounts:accounts') }}
-        />
-        <Tab.Screen
-          name={AppRoutes.CardList}
-          component={CardListTab}
-          options={{ tabBarLabel: t('accounts:cards') }}
-        />
-        <Tab.Screen
-          name={AppRoutes.FixedDeposit}
-          component={FixedDepositTab}
-          options={{ tabBarLabel: t('accounts:fixed_deposits') }}
-        />
-        <Tab.Screen
-          name={AppRoutes.Loan}
-          component={LoanListTab}
-          options={{ tabBarLabel: t('accounts:loans') }}
-        />
-        <Tab.Screen
-          name={AppRoutes.Wealth}
-          component={WealthTab}
-          options={{ tabBarLabel: t('accounts:wealth') }}
-        />
+        {tabs.map((tab, index) => (
+          <Tab.Screen
+            key={index}
+            name={tab.name}
+            component={tab.component}
+            options={tab.options}
+          />
+        ))}
       </Tab.Navigator>
     </SafeAreaView>
   );

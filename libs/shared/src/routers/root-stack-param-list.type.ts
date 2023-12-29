@@ -16,7 +16,7 @@ export type DashboardParamList = {
   [AppRoutes.Accounts]: undefined;
 };
 
-export type AccountsStactkParamList = {
+export type AccountsStackParamList = {
   [AppRoutes.AccountList]: undefined;
   [AppRoutes.CardList]: undefined;
   [AppRoutes.FixedDeposit]: undefined;
@@ -30,5 +30,6 @@ declare global {
     // eslint-disable-next-line @typescript-eslint/no-empty-interface
     interface RootParamList extends RootStackParamList {}
     interface RootParamList extends DashboardParamList {}
+    interface RootParamList extends AccountsStackParamList {}
   }
 }
