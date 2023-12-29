@@ -48,6 +48,7 @@ export function LoginFormFeature(props: LoginFormFeatureProps) {
         screen={['login']}
         preset="h1"
         style={styles.welcomeLabel}
+        textAlign="center"
       />
       <Controller
         control={control}
@@ -122,7 +123,7 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   welcomeLabel: { marginBottom: 20 },
   btnContainer: {
-    width: 100,
+    width: 150,
   },
 }));
 
