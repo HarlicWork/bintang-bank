@@ -1,64 +1,47 @@
 import { useAppSelector } from '@bintang-bank/entities/store/hooks';
-import { AppRoutes, RootStackParamList } from '@bintang-bank/shared';
+import { SafeScreen } from '@bintang-bank/shared';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import CreateDisplayNamePage from '../create-display-name/CreateDisplayNamePage';
-import LoginPage from '../login-page/LoginPage';
-import GeneralModalPage from '../modal-pages/general-modal-page/GeneralModalPage';
-import { SomethingWrongPage } from '../something-wrong-page/SomethingWrongPage';
-import { StartupPage } from '../startup-page/StartupPage';
-import DashboardNavigator from './dashboard-navigator/DashboardNavigator';
-
-const Stack = createNativeStackNavigator<RootStackParamList>();
+import { useTranslation } from 'react-i18next';
+import Snackbar from 'react-native-snackbar';
+import { useStyles } from 'react-native-unistyles';
+import ConnectionErrorPage from '../connection-error-page/ConnectionErrorPage';
+import { useNetworkStatus } from '../connection-error-page/lib/useNetworkStatus';
+import AuthNavigator from './auth-navigator/AuthNavigator';
+import NonAuthNavigator from './non-auth-navigator/NonAuthNavigator';
 
 /* eslint-disable-next-line */
 export interface AppNavigatorProps {}
 
 export function AppNavigator(props: AppNavigatorProps) {
+  const { theme } = useStyles();
+  const { t } = useTranslation(['common']);
+  const { networkStatus } = useNetworkStatus();
+
   const isAuth = useAppSelector((state) => state.auth.isAuth);
-  const isDisplayNameSet = useAppSelector((state) => state.user.displayName);
+
+  if (!networkStatus) {
+    Snackbar.show({
+      text: `${t('common:common.internetConnectionError')}`,
+      duration: Snackbar.LENGTH_LONG,
+      backgroundColor: theme.colors.errorContainer,
+    });
+
+    return (
+      <SafeScreen
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <ConnectionErrorPage />
+      </SafeScreen>
+    );
+  }
 
   return (
     <NavigationContainer>
-      {isAuth ? (
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Group>
-            {isDisplayNameSet === null && (
-              <Stack.Screen
-                name={AppRoutes.CreateDisplayName}
-                component={CreateDisplayNamePage}
-              />
-            )}
-            <Stack.Screen
-              name={AppRoutes.Dashboard}
-              component={DashboardNavigator}
-            />
-            <Stack.Screen
-              name={AppRoutes.SomethingWrong}
-              component={SomethingWrongPage}
-            />
-          </Stack.Group>
-          <Stack.Group
-            screenOptions={{
-              presentation: 'card',
-            }}
-          >
-            <Stack.Screen
-              name={AppRoutes.GeneralModal}
-              component={GeneralModalPage}
-            />
-          </Stack.Group>
-        </Stack.Navigator>
-      ) : (
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name={AppRoutes.Startup} component={StartupPage} />
-          <Stack.Screen name={AppRoutes.Login} component={LoginPage} />
-          <Stack.Screen
-            name={AppRoutes.SomethingWrong}
-            component={SomethingWrongPage}
-          />
-        </Stack.Navigator>
-      )}
+      {isAuth ? <AuthNavigator /> : <NonAuthNavigator />}
     </NavigationContainer>
   );
 }
