@@ -23,6 +23,21 @@ export interface DashboardNavigatorProps {}
 export function DashboardNavigator(props: DashboardNavigatorProps) {
   const { styles } = useStyles(stylesheet);
 
+  const tabs = [
+    {
+      name: AppRoutes.Home,
+      component: HomePage,
+    },
+    {
+      name: AppRoutes.Accounts,
+      component: TopTabsLayout,
+    },
+    {
+      name: AppRoutes.Settings,
+      component: SettingsPage,
+    },
+  ] as const;
+
   return (
     <View style={styles.container}>
       <SafeAreaView edges={['bottom']} style={styles.safeAreaView}>
@@ -39,9 +54,13 @@ export function DashboardNavigator(props: DashboardNavigatorProps) {
             />
           )}
         >
-          <Tab.Screen name={AppRoutes.Home} component={HomePage} />
-          <Tab.Screen name={AppRoutes.Accounts} component={TopTabsLayout} />
-          <Tab.Screen name={AppRoutes.Settings} component={SettingsPage} />
+          {tabs.map((tab) => (
+            <Tab.Screen
+              key={tab.name}
+              name={tab.name}
+              component={tab.component}
+            />
+          ))}
         </Tab.Navigator>
       </SafeAreaView>
     </View>

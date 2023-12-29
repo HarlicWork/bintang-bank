@@ -3,7 +3,8 @@ import {
   AccountSelectionModal,
   ProfileMenuModal,
 } from '@bintang-bank/features';
-import { SafeScreen, Typo } from '@bintang-bank/shared';
+import { AppRoutes, SafeScreen, Typo } from '@bintang-bank/shared';
+import { useBottomSheetModal } from '@gorhom/bottom-sheet';
 
 import { View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
@@ -13,6 +14,7 @@ export interface SettingsPageProps {}
 
 export function SettingsPage(props: SettingsPageProps) {
   const { styles, theme } = useStyles(stylesheet);
+  const { dismiss } = useBottomSheetModal();
 
   const {
     accountSelectionSheetRef,
@@ -40,7 +42,10 @@ export function SettingsPage(props: SettingsPageProps) {
         </Typo>
       </View>
       <AccountSelectionModal ref={accountSelectionSheetRef} />
-      <ProfileMenuModal ref={profileMenuSheetRef} />
+      <ProfileMenuModal
+        ref={profileMenuSheetRef}
+        onClosed={() => dismiss(AppRoutes.ProfileMenuModal)}
+      />
     </SafeScreen>
   );
 }
