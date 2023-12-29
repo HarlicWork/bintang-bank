@@ -28,7 +28,10 @@ export function Paginator({ data, scrollX }: PaginatorProps) {
 }
 
 const stylesheet = createStyleSheet(() => ({
-  containerStyle: { position: 'absolute', top: 150 },
+  containerStyle: {
+    position: 'absolute',
+    bottom: -16,
+  },
   dotIndicator: {
     width: 8,
     height: 8,

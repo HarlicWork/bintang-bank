@@ -78,7 +78,7 @@ export function ScrollableCards({ horizontal = true }: ScrollableCardsProps) {
 const stylesheet = createStyleSheet(({ colors }) => ({
   container: {
     alignItems: 'center',
-    gap: 4,
+    height: 'auto',
   },
   cardContainerStyle: {
     width: CARD_WIDTH,
