@@ -1,6 +1,9 @@
 import { useAppSelector } from '@bintang-bank/entities/store/hooks';
 import { SafeScreen } from '@bintang-bank/shared';
 import { NavigationContainer } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
+import Snackbar from 'react-native-snackbar';
+import { useStyles } from 'react-native-unistyles';
 import ConnectionErrorPage from '../connection-error-page/ConnectionErrorPage';
 import { useNetworkStatus } from '../connection-error-page/lib/useNetworkStatus';
 import AuthNavigator from './auth-navigator/AuthNavigator';
@@ -10,10 +13,19 @@ import NonAuthNavigator from './non-auth-navigator/NonAuthNavigator';
 export interface AppNavigatorProps {}
 
 export function AppNavigator(props: AppNavigatorProps) {
-  const isAuth = useAppSelector((state) => state.auth.isAuth);
+  const { theme } = useStyles();
+  const { t } = useTranslation(['common']);
   const { networkStatus } = useNetworkStatus();
 
+  const isAuth = useAppSelector((state) => state.auth.isAuth);
+
   if (!networkStatus) {
+    Snackbar.show({
+      text: `${t('common:common.internetConnectionError')}`,
+      duration: Snackbar.LENGTH_LONG,
+      backgroundColor: theme.colors.errorContainer,
+    });
+
     return (
       <SafeScreen
         style={{
