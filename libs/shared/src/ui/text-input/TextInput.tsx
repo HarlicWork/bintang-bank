@@ -45,7 +45,7 @@ function TextInput(
   }: TextInputProps,
   ref: Ref<TextInputRef>
 ) {
-  const { styles } = useStyles(stylesheet);
+  const { styles, theme } = useStyles(stylesheet);
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const textInputRef = useRef<NativeTextInput>(null);
 
@@ -63,6 +63,7 @@ function TextInput(
       onFocus={() => setIsFocused(true)}
       onSubmitEditing={onSubmitEditing}
       placeholder={placeholder}
+      placeholderTextColor={theme.colors.outlineVariant}
       ref={textInputRef}
       returnKeyType={returnKeyType}
       secureTextEntry={secureTextEntry}
