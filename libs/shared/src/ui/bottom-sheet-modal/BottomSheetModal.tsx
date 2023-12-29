@@ -1,10 +1,14 @@
+import { AppRoutes } from '@bintang-bank/shared/routers/app-routes';
 import {
   BottomSheetBackdrop,
   BottomSheetModal as NativeBottomSheetModal,
 } from '@gorhom/bottom-sheet';
-import { BottomSheetDefaultBackdropProps } from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types';
-import { forwardRef, useCallback, useMemo } from 'react';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import {
+  BackdropPressBehavior,
+  BottomSheetDefaultBackdropProps,
+} from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types';
+import { Ref, forwardRef, useCallback, useMemo } from 'react';
+import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 type BottomSheetModalRef = NativeBottomSheetModal;
@@ -12,14 +16,28 @@ type BottomSheetModalRef = NativeBottomSheetModal;
 /* eslint-disable-next-line */
 export interface BottomSheetProps {
   children?: React.ReactNode;
-  snapPoints?: string[];
+  enableDismissOnClose?: boolean;
   index?: number;
+  name?: string;
+  onDismiss?: () => void;
+  snapPoints?: string[];
+  stackBehavior?: 'replace' | 'push';
+  pressBehavior?: BackdropPressBehavior | undefined;
 }
 
-export const BottomSheetModal = forwardRef<
-  BottomSheetModalRef,
-  BottomSheetProps
->(({ children, snapPoints, index = 1 }, ref) => {
+const BottomSheetModal = (
+  {
+    children,
+    enableDismissOnClose = true,
+    index = 1,
+    name = AppRoutes.BottomSheetModal,
+    onDismiss,
+    snapPoints,
+    stackBehavior = 'replace',
+    pressBehavior,
+  }: BottomSheetProps,
+  ref: Ref<BottomSheetModalRef>
+) => {
   const { styles } = useStyles(stylesheet);
   const insets = useSafeAreaInsets();
 
@@ -31,32 +49,37 @@ export const BottomSheetModal = forwardRef<
         {...props}
         disappearsOnIndex={-1}
         appearsOnIndex={1}
+        pressBehavior={pressBehavior}
       />
     ),
-    []
+    [pressBehavior]
   );
 
   return (
     <NativeBottomSheetModal
-      ref={ref}
-      index={index}
-      snapPoints={snapPoints ? snapPoints : defaultSnapPoints}
-      enablePanDownToClose={true}
-      backgroundStyle={styles.modalBackground}
       backdropComponent={renderBackdrop}
-      containerStyle={{
-        marginTop: insets.top,
-      }}
+      backgroundStyle={styles.modalBackground}
+      containerStyle={styles.containerStyle(insets)}
+      enablePanDownToClose={enableDismissOnClose}
+      index={index}
+      name={name}
+      onDismiss={onDismiss}
+      ref={ref}
+      snapPoints={snapPoints ? snapPoints : defaultSnapPoints}
+      stackBehavior={stackBehavior}
     >
       {children}
     </NativeBottomSheetModal>
   );
-});
+};
 
 const stylesheet = createStyleSheet(({ colors }) => ({
   modalBackground: {
     backgroundColor: colors.onPrimary,
   },
+  containerStyle: (insets: EdgeInsets) => ({
+    marginTop: insets.top,
+  }),
 }));
 
-export default BottomSheetModal;
+export default forwardRef(BottomSheetModal);

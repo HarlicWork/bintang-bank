@@ -1,11 +1,15 @@
 import { useModalService } from '@bintang-bank/entities';
-import { ProfileMenuModal } from '@bintang-bank/features';
-import { SafeScreen, screenHeight } from '@bintang-bank/shared';
+import {
+  AccountSelectionModal,
+  ProfileMenuModal,
+} from '@bintang-bank/features';
+import { AppRoutes, SafeScreen, screenHeight } from '@bintang-bank/shared';
 import {
   CommonHeaderPrimaryWidget,
   PromotionCardWidget,
   TotalAccountDetailWidget,
 } from '@bintang-bank/widgets';
+import { useBottomSheetModal } from '@gorhom/bottom-sheet';
 import { View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
@@ -14,8 +18,13 @@ export interface HomePageProps {}
 
 export function HomePage(props: HomePageProps) {
   const { styles } = useStyles(stylesheet);
-
-  const { profileMenuSheetRef, openProfileMenuModal } = useModalService();
+  const { dismiss } = useBottomSheetModal();
+  const {
+    profileMenuSheetRef,
+    openProfileMenuModal,
+    accountSelectionSheetRef,
+    openAccountSelectionModal,
+  } = useModalService();
 
   return (
     <SafeScreen edges={['top']}>
@@ -28,7 +37,15 @@ export function HomePage(props: HomePageProps) {
           <PromotionCardWidget />
         </View>
       </View>
-      <ProfileMenuModal ref={profileMenuSheetRef} />
+      <ProfileMenuModal
+        ref={profileMenuSheetRef}
+        onClosed={() => dismiss(AppRoutes.ProfileMenuModal)}
+        customFunction={() => {
+          dismiss(AppRoutes.ProfileMenuModal);
+          openAccountSelectionModal();
+        }}
+      />
+      <AccountSelectionModal ref={accountSelectionSheetRef} />
     </SafeScreen>
   );
 }
