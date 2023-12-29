@@ -44,14 +44,29 @@
       "dependsOn": ["watchman-clear", "ensure-symlink", "sync-deps"],
       "options": {}
     },
-    "build-android": {
+    "build-android:debug": {
       "executor": "@nx/react-native:build-android",
       "outputs": [
         "{projectRoot}/android/app/build/outputs/bundle",
         "{projectRoot}/android/app/build/outputs/apk"
       ],
       "dependsOn": ["ensure-symlink", "sync-deps"],
-      "options": {}
+      "options": {
+        "mode": "debug",
+        "tasks": "assembleDebug"
+      }
+    },
+    "build-android:release": {
+      "executor": "@nx/react-native:build-android",
+      "outputs": [
+        "{projectRoot}/android/app/build/outputs/bundle",
+        "{projectRoot}/android/app/build/outputs/apk"
+      ],
+      "dependsOn": ["ensure-symlink", "sync-deps"],
+      "options": {
+        "mode": "release",
+        "tasks": "assembleRelease"
+      }
     },
     "build-ios": {
       "executor": "@nx/react-native:build-ios",

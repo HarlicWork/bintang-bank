@@ -4,7 +4,9 @@
   "license": "MIT",
   "scripts": {
     "ios:mobile": "nx run-ios mobile-app",
-    "android:mobile": "nx run-android mobile-app"
+    "android:mobile": "nx run-android mobile-app",
+    "android:build:debug": "nx build-android:debug mobile-app",
+    "android:build:release": "nx build-android:release mobile-app"
   },
   "private": true,
   "dependencies": {
