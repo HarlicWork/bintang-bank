@@ -49,6 +49,7 @@ const stylesheet = createStyleSheet(({ colors }) => ({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
+    gap: 24,
   },
 }));
 
