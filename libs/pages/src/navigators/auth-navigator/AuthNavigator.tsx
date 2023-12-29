@@ -2,7 +2,6 @@ import { useAppSelector } from '@bintang-bank/entities/store/hooks';
 import { AppRoutes, RootStackParamList } from '@bintang-bank/shared';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import ConnectionErrorPage from '../../connection-error-page/ConnectionErrorPage';
 import CreateDisplayNamePage from '../../create-display-name/CreateDisplayNamePage';
 import GeneralModalPage from '../../modal-pages/general-modal-page/GeneralModalPage';
 import SomethingWrongPage from '../../something-wrong-page/SomethingWrongPage';
@@ -42,10 +41,6 @@ export function AuthNavigator(props: AuthNavigatorProps) {
         <Stack.Screen
           name={AppRoutes.GeneralModal}
           component={GeneralModalPage}
-        />
-        <Stack.Screen
-          name={AppRoutes.ConnectionError}
-          component={ConnectionErrorPage}
         />
       </Stack.Group>
     </Stack.Navigator>

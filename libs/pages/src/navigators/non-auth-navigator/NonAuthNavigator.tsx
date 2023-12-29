@@ -1,7 +1,6 @@
 import { AppRoutes, RootStackParamList } from '@bintang-bank/shared';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import ConnectionErrorPage from '../../connection-error-page/ConnectionErrorPage';
 import LoginPage from '../../login-page/LoginPage';
 import SomethingWrongPage from '../../something-wrong-page/SomethingWrongPage';
 import StartupPage from '../../startup-page/StartupPage';
@@ -20,16 +19,6 @@ export function NonAuthNavigator(props: NonAuthNavigatorProps) {
         <Stack.Screen
           name={AppRoutes.SomethingWrong}
           component={SomethingWrongPage}
-        />
-      </Stack.Group>
-      <Stack.Group
-        screenOptions={{
-          presentation: 'card',
-        }}
-      >
-        <Stack.Screen
-          name={AppRoutes.ConnectionError}
-          component={ConnectionErrorPage}
         />
       </Stack.Group>
     </Stack.Navigator>

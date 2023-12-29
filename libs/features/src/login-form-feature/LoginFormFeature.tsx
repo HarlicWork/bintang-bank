@@ -1,5 +1,6 @@
 import { useAuth } from '@bintang-bank/entities';
-import { Button, TextInput, TextInputRef, Typo } from '@bintang-bank/shared';
+import { Button, TextInput, Typo } from '@bintang-bank/shared';
+import { TextInputRef } from '@bintang-bank/shared/ui/text-input/TextInput';
 import { useRef } from 'react';
 import { Controller, FieldError, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';

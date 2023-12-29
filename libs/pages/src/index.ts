@@ -1,5 +1,6 @@
 export * from './accounts-page/AccountsPage';
 export * from './connection-error-page/ConnectionErrorPage';
+export * from './connection-error-page/lib/useNetworkStatus';
 export * from './create-display-name/CreateDisplayNamePage';
 export * from './home-page/HomePage';
 export * from './login-page/LoginPage';
