@@ -2,6 +2,7 @@ import {
   AccountSelectionModalRef,
   ProfileMenuModalRef,
 } from '@bintang-bank/features';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import React, { createContext, useRef } from 'react';
 
 export type ModalServiceContextType = {
@@ -42,21 +43,23 @@ export function ModalProvider({ children }: ModalProviderProps) {
   };
 
   return (
-    <ModalServiceContext.Provider
-      value={{
-        openProfileMenuModal,
-        openAccountSelectionModal,
-      }}
-    >
-      <ModalContextRef.Provider
+    <BottomSheetModalProvider>
+      <ModalServiceContext.Provider
         value={{
-          profileMenuSheetRef,
-          accountSelectionSheetRef,
+          openProfileMenuModal,
+          openAccountSelectionModal,
         }}
       >
-        {children}
-      </ModalContextRef.Provider>
-    </ModalServiceContext.Provider>
+        <ModalContextRef.Provider
+          value={{
+            profileMenuSheetRef,
+            accountSelectionSheetRef,
+          }}
+        >
+          {children}
+        </ModalContextRef.Provider>
+      </ModalServiceContext.Provider>
+    </BottomSheetModalProvider>
   );
 }
 
