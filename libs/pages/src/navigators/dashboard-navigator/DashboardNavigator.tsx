@@ -1,9 +1,9 @@
 /* eslint-disable @nx/enforce-module-boundaries */
-import { HomePage, SettingsPage } from '@bintang-bank/pages';
+import { AccountsPage, HomePage, SettingsPage } from '@bintang-bank/pages';
 import {
   AppRoutes,
   DashboardParamList,
-  TopTabsLayout,
+  ModalProvider,
 } from '@bintang-bank/shared';
 import {
   BottomTabBarProps,
@@ -30,7 +30,7 @@ export function DashboardNavigator(props: DashboardNavigatorProps) {
     },
     {
       name: AppRoutes.Accounts,
-      component: TopTabsLayout,
+      component: AccountsPage,
     },
     {
       name: AppRoutes.Settings,
@@ -41,27 +41,29 @@ export function DashboardNavigator(props: DashboardNavigatorProps) {
   return (
     <View style={styles.container}>
       <SafeAreaView edges={['bottom']} style={styles.safeAreaView}>
-        <Tab.Navigator
-          backBehavior="history"
-          screenOptions={{
-            headerShown: false,
-          }}
-          tabBar={({ state, descriptors, navigation }: BottomTabBarProps) => (
-            <DashboardTabBar
-              state={state}
-              descriptors={descriptors}
-              navigation={navigation}
-            />
-          )}
-        >
-          {tabs.map((tab) => (
-            <Tab.Screen
-              key={tab.name}
-              name={tab.name}
-              component={tab.component}
-            />
-          ))}
-        </Tab.Navigator>
+        <ModalProvider>
+          <Tab.Navigator
+            backBehavior="history"
+            screenOptions={{
+              headerShown: false,
+            }}
+            tabBar={({ state, descriptors, navigation }: BottomTabBarProps) => (
+              <DashboardTabBar
+                state={state}
+                descriptors={descriptors}
+                navigation={navigation}
+              />
+            )}
+          >
+            {tabs.map((tab) => (
+              <Tab.Screen
+                key={tab.name}
+                name={tab.name}
+                component={tab.component}
+              />
+            ))}
+          </Tab.Navigator>
+        </ModalProvider>
       </SafeAreaView>
     </View>
   );
