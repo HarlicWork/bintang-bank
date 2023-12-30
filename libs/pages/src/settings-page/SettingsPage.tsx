@@ -1,10 +1,16 @@
-import { useModalService } from '@bintang-bank/entities';
 import {
   AccountSelectionModal,
   ProfileMenuModal,
 } from '@bintang-bank/features';
-import { AppRoutes, SafeScreen, Typo } from '@bintang-bank/shared';
+import {
+  AppRoutes,
+  ModalContextRef,
+  ModalServiceContext,
+  SafeScreen,
+  Typo,
+} from '@bintang-bank/shared';
 import { useBottomSheetModal } from '@gorhom/bottom-sheet';
+import { useContext } from 'react';
 
 import { View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
@@ -16,12 +22,11 @@ export function SettingsPage(props: SettingsPageProps) {
   const { styles, theme } = useStyles(stylesheet);
   const { dismiss } = useBottomSheetModal();
 
-  const {
-    accountSelectionSheetRef,
-    openAccountSelectionModal,
-    profileMenuSheetRef,
-    openProfileMenuModal,
-  } = useModalService();
+  const { profileMenuSheetRef, accountSelectionSheetRef } =
+    useContext(ModalContextRef);
+
+  const { openProfileMenuModal, openAccountSelectionModal } =
+    useContext(ModalServiceContext);
 
   return (
     <SafeScreen style={styles.container}>

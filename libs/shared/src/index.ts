@@ -1,3 +1,4 @@
+export * from './context/modal-context/ModalContext';
 export * from './constants/storageKeys';
 export * from './routers/app-routes';
 export * from './routers/root-stack-param-list.type';
@@ -18,4 +19,3 @@ export { default as TextInput } from './ui/text-input/TextInput';
 export * from './ui/typo/Typo';
 export * from './utils/dimensions';
 export * from './utils/helper';
-

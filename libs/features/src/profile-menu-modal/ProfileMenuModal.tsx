@@ -15,11 +15,10 @@ export type ProfileMenuModalRef = {
 /* eslint-disable-next-line */
 export interface ProfileMenuModalProps {
   onClosed?: () => void;
-  customFunction?: () => void;
 }
 
 const ProfileMenuModal = (
-  { onClosed, customFunction }: ProfileMenuModalProps,
+  { onClosed }: ProfileMenuModalProps,
   ref: Ref<ProfileMenuModalRef>
 ) => {
   const { styles } = useStyles(stylesheet);
@@ -72,12 +71,6 @@ const ProfileMenuModal = (
           text="common.changeLanguage"
           preset="h3"
           onPress={onChangeLanguagePress}
-        />
-        <Typo
-          screen={['common']}
-          text="common.open_account_modal"
-          preset="h3"
-          onPress={customFunction}
         />
       </BottomSheetView>
     </BottomSheetModal>

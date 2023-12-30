@@ -1,4 +1,6 @@
-import { Text, View } from 'react-native';
+import { Button, ModalServiceContext } from '@bintang-bank/shared';
+import { useContext } from 'react';
+import { View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 /* eslint-disable-next-line */
@@ -7,9 +9,14 @@ export interface CardListTabProps {}
 export function CardListTab(props: CardListTabProps) {
   const { styles } = useStyles(stylesheet);
 
+  const { openAccountSelectionModal } = useContext(ModalServiceContext);
+
   return (
     <View style={styles.container}>
-      <Text>Welcome to CardListTab!</Text>
+      <Button
+        title="Open Account Selection Modal"
+        onPress={openAccountSelectionModal}
+      />
     </View>
   );
 }

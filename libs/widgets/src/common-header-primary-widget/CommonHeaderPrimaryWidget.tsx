@@ -1,23 +1,29 @@
 import { useAppSelector } from '@bintang-bank/entities/store/hooks';
-import { Icon, Typo } from '@bintang-bank/shared';
+import { Icon, ModalServiceContext, Typo } from '@bintang-bank/shared';
+import { useContext } from 'react';
 
 import { TouchableOpacity, View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 /* eslint-disable-next-line */
 export interface CommonHeaderPrimaryWidgetProps {
-  onPress: () => void;
+  // onPress: () => void;
 }
 
-export function CommonHeaderPrimaryWidget({
-  onPress,
-}: CommonHeaderPrimaryWidgetProps) {
+export function CommonHeaderPrimaryWidget(
+  props: CommonHeaderPrimaryWidgetProps
+) {
   const { styles, theme } = useStyles(stylesheet);
   const username = useAppSelector((state) => state.user.displayName);
 
+  const { openProfileMenuModal } = useContext(ModalServiceContext);
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.circleAvatar} onPress={onPress}>
+      <TouchableOpacity
+        style={styles.circleAvatar}
+        onPress={openProfileMenuModal}
+      >
         <Icon name="person" size={30} />
       </TouchableOpacity>
       <View>
