@@ -3,7 +3,6 @@ import React, { Suspense, lazy } from 'react';
 
 import { persistor, store } from '@bintang-bank/entities/store/store';
 import { SomethingWrongPage } from '@bintang-bank/pages';
-import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Provider as StoreProvider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -18,13 +17,11 @@ export const App = () => {
     <StoreProvider store={store}>
       <PersistGate loading={<SomethingWrongPage />} persistor={persistor}>
         <GestureHandlerRootView style={{ flex: 1 }}>
-          <BottomSheetModalProvider>
-            <Suspense
-              fallback={<ActivityIndicator size="large" color="#0000ff" />}
-            >
-              <AppNavigator />
-            </Suspense>
-          </BottomSheetModalProvider>
+          <Suspense
+            fallback={<ActivityIndicator size="large" color="#0000ff" />}
+          >
+            <AppNavigator />
+          </Suspense>
         </GestureHandlerRootView>
       </PersistGate>
     </StoreProvider>
