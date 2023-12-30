@@ -1,13 +1,10 @@
-import { useEffect, useState } from 'react';
-
 import NetInfo from '@react-native-community/netinfo';
-import { useStyles } from 'react-native-unistyles';
+import { useState, useSyncExternalStore } from 'react';
 
 export const useNetworkStatus = () => {
-  const { theme } = useStyles();
-  const [networkStatus, setNetworkStatus] = useState<boolean | null>(true);
+  const [networkStatus, setNetworkStatus] = useState<boolean | null>(null);
 
-  useEffect(() => {
+  const subscribeNetworkStatus = () => {
     const unsubscribe = NetInfo.addEventListener((state) => {
       setNetworkStatus(state.isConnected);
     });
@@ -15,7 +12,13 @@ export const useNetworkStatus = () => {
     return () => {
       unsubscribe();
     };
-  }, [theme.colors.error, theme.colors.primary]);
+  };
 
-  return { networkStatus };
+  const getSnapshot = () => {
+    return networkStatus;
+  };
+
+  const isOnline = useSyncExternalStore(subscribeNetworkStatus, getSnapshot);
+
+  return { isOnline };
 };
