@@ -15,11 +15,11 @@ export interface AppNavigatorProps {}
 export function AppNavigator(props: AppNavigatorProps) {
   const { theme } = useStyles();
   const { t } = useTranslation(['common']);
-  const { networkStatus } = useNetworkStatus();
+  const { isOnline } = useNetworkStatus();
 
   const isAuth = useAppSelector((state) => state.auth.isAuth);
 
-  if (!networkStatus) {
+  if (isOnline === false || null) {
     Snackbar.show({
       text: `${t('common:common.internetConnectionError')}`,
       duration: Snackbar.LENGTH_LONG,
