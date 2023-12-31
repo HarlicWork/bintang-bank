@@ -1,8 +1,18 @@
-import { Button, TextInput } from '@bintang-bank/shared';
-import { useReducer } from 'react';
+import { Button } from '@bintang-bank/shared';
+import {
+  Ref,
+  forwardRef,
+  useImperativeHandle,
+  useReducer,
+  useRef,
+} from 'react';
 
-import { View } from 'react-native';
+import { View, TextInput } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
+
+export type CounterInputRef = {
+  onValue: () => void;
+};
 
 interface State {
   counter: number;
@@ -44,10 +54,14 @@ const reducer = (state: State, action: Action) => {
 /* eslint-disable-next-line */
 export interface CounterInputButtonProps {}
 
-export function CounterInputButton(props: CounterInputButtonProps) {
+function CounterInputButton(
+  props: CounterInputButtonProps,
+  ref: Ref<CounterInputRef>
+) {
   const { styles } = useStyles(stylesheet);
 
   const [state, dispatch] = useReducer(reducer, initialState);
+  const textInputRef = useRef<TextInput>(null);
 
   const onHandleIncrement = () => {
     dispatch({ type: 'increment' });
@@ -61,12 +75,19 @@ export function CounterInputButton(props: CounterInputButtonProps) {
     dispatch({ type: 'custom', payload: value });
   };
 
-  console.log('state', state.counter);
+  const getCounterValue = () => {
+    return state.counter;
+  };
+
+  useImperativeHandle(ref, () => ({
+    onValue: getCounterValue,
+  }));
 
   return (
     <View style={styles.container}>
       <Button title="+" onPress={onHandleIncrement} />
       <TextInput
+        ref={textInputRef}
         onChangeText={(text) => {
           onHandleCustomValue(+text);
         }}
@@ -94,7 +115,12 @@ const stylesheet = createStyleSheet((theme) => ({
   textInputStyle: {
     width: 70,
     alignItems: 'center',
+    height: 40,
+    padding: 10,
+    borderRadius: 10,
+    borderWidth: 1,
+    color: theme.colors.secondary,
   },
 }));
 
-export default CounterInputButton;
+export default forwardRef(CounterInputButton);
