@@ -23,6 +23,7 @@
     "react-hook-form": "*",
     "react-i18next": "*",
     "react-native-animated-pagination-dots": "*",
+    "react-native-device-info": "*",
     "react-native-fast-image": "*",
     "react-native-flipper": "*",
     "react-native-gesture-handler": "*",
