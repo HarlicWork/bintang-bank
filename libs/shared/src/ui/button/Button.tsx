@@ -1,4 +1,9 @@
-import { ActivityIndicator, TouchableHighlight } from 'react-native';
+import {
+  ActivityIndicator,
+  StyleProp,
+  TouchableHighlight,
+  ViewStyle,
+} from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 import Typo from '../typo/Typo';
 
@@ -7,15 +12,21 @@ export interface ButtonProps {
   title: string;
   onPress: () => void;
   disabled?: boolean;
+  customStyles?: StyleProp<ViewStyle>;
 }
 
-export function Button({ title, onPress, disabled }: ButtonProps) {
+export function Button({
+  title,
+  onPress,
+  disabled,
+  customStyles,
+}: ButtonProps) {
   const { styles, theme } = useStyles(stylesheet);
 
   return (
     <TouchableHighlight
       underlayColor={theme.colors.onPrimaryContainer}
-      style={styles.container}
+      style={[styles.container, customStyles]}
       onPress={onPress}
       disabled={disabled}
     >
