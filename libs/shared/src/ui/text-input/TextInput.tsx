@@ -8,7 +8,7 @@ import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 export type TextInputRef = {
   onFocus: () => void;
-};
+  };
 
 /* eslint-disable-next-line */
 export interface TextInputProps {
@@ -21,6 +21,7 @@ export interface TextInputProps {
   editable?: boolean;
   secureTextEntry?: boolean;
   returnKeyType?: 'done' | 'go' | 'next' | 'search' | 'send';
+  textAlign?: 'left' | 'right' | 'center' | undefined;
   keyboardType?:
     | 'default'
     | 'number-pad'
@@ -40,6 +41,7 @@ function TextInput(
     autoCapitalize,
     editable,
     secureTextEntry,
+    textAlign,
     returnKeyType = 'done',
     keyboardType = 'default',
   }: TextInputProps,
@@ -51,12 +53,13 @@ function TextInput(
 
   useImperativeHandle(ref, () => ({
     onFocus: () => textInputRef.current?.focus(),
-  }));
+      }));
 
   return (
     <NativeTextInput
       autoCapitalize={autoCapitalize}
       editable={editable}
+      textAlign={textAlign}
       keyboardType={keyboardType}
       onBlur={() => setIsFocused(false)}
       onChangeText={onChangeText}
