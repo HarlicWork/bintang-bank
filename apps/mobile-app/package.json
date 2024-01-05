@@ -44,6 +44,8 @@
     "react-redux": "*",
     "react": "*",
     "redux-flipper": "*",
-    "redux-persist": "*"
+    "redux-persist": "*",
+    "moti": "*",
+    "babel-plugin-module-resolver": "*"
   }
 }
