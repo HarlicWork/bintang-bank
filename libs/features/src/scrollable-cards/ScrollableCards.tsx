@@ -1,12 +1,12 @@
 import {
+  Button,
   Card,
-  Paginator,
   Typo,
   screenHeight,
   screenWidth,
 } from '@bintang-bank/shared';
-import { useRef } from 'react';
-import { Animated, Platform, View } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { Animated, FlatList, Pressable, View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 export type Data = { id: number; name: string };
@@ -18,7 +18,7 @@ const data = Array.from({ length: 5 }, (_, i): Data => {
   };
 });
 
-const SPACING_FOR_CARD_INSET = screenWidth * 0.05 - data.length;
+const _spacing = 10;
 const CARD_WIDTH = screenWidth * 0.8;
 const CARD_HEIGHT = screenHeight * 0.2;
 
@@ -30,47 +30,66 @@ export interface ScrollableCardsProps {
 export function ScrollableCards({ horizontal = true }: ScrollableCardsProps) {
   const { styles } = useStyles(stylesheet);
 
-  const scrollX = useRef(new Animated.Value(0)).current;
-  const viewConfigRef = useRef({ viewAreaCoveragePercentThreshold: 50 });
+  const ref = useRef<FlatList>(null);
+  const [index, setIndex] = useState(0);
+  const animatedValue = useRef(new Animated.Value(0)).current;
 
-  const renderItem = ({ item }: { item: Data }) => {
+  const handlePressBack = () => {
+    setIndex((prev) => {
+      if (prev === 0) return prev;
+      return prev - 1;
+    });
+  };
+
+  const handlePressNext = () => {
+    setIndex((prev) => {
+      if (prev === data.length - 1) return prev;
+      return prev + 1;
+    });
+  };
+
+  const handlePressCard = (index: number) => {
+    setIndex(index);
+  };
+
+  useEffect(() => {
+    ref.current?.scrollToIndex({ index, animated: true, viewPosition: 0.5 });
+    animatedValue.setValue(2);
+  }, [index, animatedValue]);
+
+  const renderItem = ({
+    item,
+    index: fIndex,
+  }: {
+    item: Data;
+    index: number;
+  }) => {
     return (
-      <Card styles={styles.cardContainerStyle}>
-        <Typo preset="title">{item.name}</Typo>
-      </Card>
+      <Pressable onPress={() => handlePressCard(fIndex)}>
+        <Card key={fIndex} styles={styles.cardContainerStyle}>
+          <Typo preset="title">{item.name}</Typo>
+        </Card>
+      </Pressable>
     );
   };
 
   return (
     <View style={styles.container}>
-      <Animated.FlatList
+      <FlatList
+        ref={ref}
+        initialScrollIndex={index}
+        horizontal
         data={data}
-        keyExtractor={(item) => item.id.toString()}
         renderItem={renderItem}
-        viewabilityConfig={viewConfigRef.current}
-        initialNumToRender={5}
-        horizontal={horizontal}
-        contentContainerStyle={{
-          paddingHorizontal:
-            Platform.OS === 'android' ? SPACING_FOR_CARD_INSET : 0,
-        }}
+        keyExtractor={({ id }) => id.toString()}
+        contentContainerStyle={styles.contentContainerStyle}
         showsHorizontalScrollIndicator={false}
-        pagingEnabled
-        decelerationRate={0}
-        snapToInterval={CARD_WIDTH + 10}
-        snapToAlignment="center"
-        contentInset={{
-          top: 0,
-          left: SPACING_FOR_CARD_INSET,
-          bottom: 0,
-          right: SPACING_FOR_CARD_INSET,
-        }}
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-          { useNativeDriver: false }
-        )}
+        ItemSeparatorComponent={() => <View style={{ width: _spacing }} />}
       />
-      <Paginator data={data} scrollX={scrollX} />
+      <View style={{ flexDirection: 'row', gap: 8 }}>
+        <Button title="Back" onPress={handlePressBack} />
+        <Button title="Next" onPress={handlePressNext} />
+      </View>
     </View>
   );
 }
@@ -78,17 +97,15 @@ export function ScrollableCards({ horizontal = true }: ScrollableCardsProps) {
 const stylesheet = createStyleSheet(({ colors }) => ({
   container: {
     alignItems: 'center',
-    height: 'auto',
+  },
+  contentContainerStyle: {
+    padding: _spacing,
   },
   cardContainerStyle: {
     width: CARD_WIDTH,
     height: CARD_HEIGHT,
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 5,
-  },
-  separator: {
-    width: 16,
   },
 }));
 
